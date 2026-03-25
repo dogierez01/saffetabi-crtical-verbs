@@ -112,7 +112,6 @@
             transform: scale(1.15);
         }
 
-        /* Sci-Fi Glows for icons */
         #icon-nebula { filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.8)); }
         #icon-apollo { filter: drop-shadow(0 0 12px rgba(255, 61, 0, 0.8)); }
         #icon-orion { filter: drop-shadow(0 0 12px rgba(179, 102, 255, 0.8)); }
@@ -321,21 +320,9 @@
 
         .action-btn:active { transform: scale(0.95); }
 
-        #btn-tick { 
-            color: #39FF14; 
-            border: 2px solid #39FF14; 
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3), inset 0 0 10px rgba(57, 255, 20, 0.2); 
-        }
-        #btn-cross { 
-            color: #ff1744; 
-            border: 2px solid #ff1744; 
-            box-shadow: 0 0 15px rgba(255, 23, 68, 0.3), inset 0 0 10px rgba(255, 23, 68, 0.2); 
-        }
-        #btn-hint { 
-            color: #00e5ff; 
-            border: 2px solid #00e5ff; 
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.3), inset 0 0 10px rgba(0, 229, 255, 0.2); 
-        }
+        #btn-tick { color: #39FF14; border: 2px solid #39FF14; box-shadow: 0 0 15px rgba(57, 255, 20, 0.3), inset 0 0 10px rgba(57, 255, 20, 0.2); }
+        #btn-cross { color: #ff1744; border: 2px solid #ff1744; box-shadow: 0 0 15px rgba(255, 23, 68, 0.3), inset 0 0 10px rgba(255, 23, 68, 0.2); }
+        #btn-hint { color: #00e5ff; border: 2px solid #00e5ff; box-shadow: 0 0 15px rgba(0, 229, 255, 0.3), inset 0 0 10px rgba(0, 229, 255, 0.2); }
 
         .action-btn:disabled {
             border-color: #333 !important;
@@ -380,91 +367,35 @@
             transition: all 0.1s;
         }
 
-        #spin-btn:active { 
-            transform: scale(0.98); 
-            box-shadow: 0 0 10px rgba(0, 229, 255, 0.6), inset 0 0 10px rgba(0, 229, 255, 0.4); 
-            background: rgba(0, 229, 255, 0.3);
-        }
-        #spin-btn:disabled { 
-            border-color: #333; 
-            color: #555; 
-            background: transparent;
-            box-shadow: none; 
-            cursor: not-allowed; 
-            transform: none; 
-            display: none; 
-        }
+        #spin-btn:active { transform: scale(0.98); background: rgba(0, 229, 255, 0.3); }
+        #spin-btn:disabled { border-color: #333; color: #555; display: none; }
 
         #finish-btn {
             display: none; 
-            background: rgba(57, 255, 20, 0.1);
-            border: 2px solid #39FF14;
-            border-radius: 8px;
-            color: #39FF14;
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 36px;
-            font-weight: bold;
-            padding: 15px 80px;
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(57, 255, 20, 0.4), inset 0 0 20px rgba(57, 255, 20, 0.2);
-            text-transform: uppercase;
-            letter-spacing: 4px;
+            background: rgba(57, 255, 20, 0.1); border: 2px solid #39FF14; border-radius: 8px; color: #39FF14;
+            font-family: 'Rajdhani', sans-serif; font-size: 36px; font-weight: bold; padding: 15px 80px; cursor: pointer;
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.4); text-transform: uppercase; letter-spacing: 4px;
         }
 
         /* --- CUSTOM MODAL ALERT --- */
         #custom-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(5px);
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(5px);
         }
 
         .modal-content {
-            background: #050612;
-            border: 2px solid #ff1744;
-            border-radius: 12px;
-            padding: 50px;
-            text-align: center;
-            max-width: 550px;
-            box-shadow: 0 0 50px rgba(255, 23, 68, 0.4), inset 0 0 20px rgba(255, 23, 68, 0.2);
+            background: #050612; border: 2px solid #ff1744; border-radius: 12px; padding: 50px; text-align: center;
+            max-width: 550px; box-shadow: 0 0 50px rgba(255, 23, 68, 0.4);
         }
 
-        .modal-content p {
-            color: #e0f7fa;
-            font-size: 28px;
-            margin-top: 0;
-            margin-bottom: 40px;
-            line-height: 1.5;
-            font-family: 'Oswald', sans-serif;
-        }
+        .modal-content p { color: #e0f7fa; font-size: 28px; margin-top: 0; margin-bottom: 40px; line-height: 1.5; }
 
         .modal-btn {
-            background: transparent;
-            color: #00e5ff;
-            border: 2px solid #00e5ff;
-            padding: 15px 50px;
-            font-size: 26px;
-            font-family: 'Rajdhani', sans-serif;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.4), inset 0 0 10px rgba(0, 229, 255, 0.2);
-            font-weight: bold;
-            letter-spacing: 2px;
-            transition: all 0.1s;
+            background: transparent; color: #00e5ff; border: 2px solid #00e5ff; padding: 15px 50px;
+            font-size: 26px; font-family: 'Rajdhani', sans-serif; border-radius: 8px; cursor: pointer; font-weight: bold;
         }
 
-        .modal-btn:active {
-            transform: scale(0.95);
-        }
-
-        @keyframes popIn {
-            0% { transform: scale(0.8); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
+        @keyframes popIn { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
     </style>
 </head>
@@ -477,82 +408,35 @@
         </div>
 
         <div class="machine-grid">
-            
             <div class="machine-card" onclick="openGame('set1', 'NEBULA STATION')">
                 <h2>NEBULA STATION</h2>
-                <svg id="icon-nebula" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 18C8.69 18 6 15.31 6 12C6 8.69 8.69 6 12 6C15.31 6 18 8.69 18 12"/>
-                    <circle cx="12" cy="12" r="2" fill="#00e5ff"/>
-                </svg>
-                <div id="badge-set1" class="completion-badge">
-                    <span class="thumbs-up">👍</span>
-                    <span class="final-score">Skor: <span id="score-set1">0</span></span>
-                    <span class="final-percent">Başarı: <span id="percent-set1">0</span>%</span>
-                </div>
+                <svg id="icon-nebula" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 18C8.69 18 6 15.31 6 12C6 8.69 8.69 6 12 6C15.31 6 18 8.69 18 12"/><circle cx="12" cy="12" r="2" fill="#00e5ff"/></svg>
+                <div id="badge-set1" class="completion-badge"><span class="thumbs-up">👍</span><span class="final-score">Skor: <span id="score-set1">0</span></span><span class="final-percent">Başarı: <span id="percent-set1">0</span>%</span></div>
             </div>
-            
             <div class="machine-card" onclick="openGame('set2', 'APOLLO BASE')">
                 <h2>APOLLO BASE</h2>
-                <svg id="icon-apollo" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#ff3d00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4.5 16.5C4.5 16.5 3 18.5 2 22C5.5 21 7.5 19.5 7.5 19.5L11 21L14.5 15L21.5 7.5C21.5 7.5 23 2 22 1C21 0 15.5 1.5 15.5 1.5L8 8.5L2 12L3.5 15.5L4.5 16.5Z"/>
-                    <circle cx="15" cy="8" r="1.5" fill="#ff3d00"/>
-                </svg>
-                <div id="badge-set2" class="completion-badge">
-                    <span class="thumbs-up">👍</span>
-                    <span class="final-score">Skor: <span id="score-set2">0</span></span>
-                    <span class="final-percent">Başarı: <span id="percent-set2">0</span>%</span>
-                </div>
+                <svg id="icon-apollo" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#ff3d00" stroke-width="2"><path d="M4.5 16.5C4.5 16.5 3 18.5 2 22C5.5 21 7.5 19.5 7.5 19.5L11 21L14.5 15L21.5 7.5C21.5 7.5 23 2 22 1C21 0 15.5 1.5 15.5 1.5L8 8.5L2 12L3.5 15.5L4.5 16.5Z"/><circle cx="15" cy="8" r="1.5" fill="#ff3d00"/></svg>
+                <div id="badge-set2" class="completion-badge"><span class="thumbs-up">👍</span><span class="final-score">Skor: <span id="score-set2">0</span></span><span class="final-percent">Başarı: <span id="percent-set2">0</span>%</span></div>
             </div>
-
             <div class="machine-card" onclick="openGame('set3', 'ORION SECTOR')">
                 <h2>ORION SECTOR</h2>
-                <svg id="icon-orion" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#b366ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                </svg>
-                <div id="badge-set3" class="completion-badge">
-                    <span class="thumbs-up">👍</span>
-                    <span class="final-score">Skor: <span id="score-set3">0</span></span>
-                    <span class="final-percent">Başarı: <span id="percent-set3">0</span>%</span>
-                </div>
+                <svg id="icon-orion" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#b366ff" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <div id="badge-set3" class="completion-badge"><span class="thumbs-up">👍</span><span class="final-score">Skor: <span id="score-set3">0</span></span><span class="final-percent">Başarı: <span id="percent-set3">0</span>%</span></div>
             </div>
-
             <div class="machine-card" onclick="openGame('set4', 'VOYAGER OUTPOST')">
                 <h2>VOYAGER OUTPOST</h2>
-                <svg id="icon-voyager" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#39FF14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2C8 2 5 6 5 10C5 12.3 6.2 14.3 8 15.5L12 22L16 15.5C17.8 14.3 19 12.3 19 10C19 6 16 2 12 2Z"/>
-                    <line x1="8" y1="10" x2="16" y2="10"/>
-                    <line x1="12" y1="6" x2="12" y2="14"/>
-                </svg>
-                <div id="badge-set4" class="completion-badge">
-                    <span class="thumbs-up">👍</span>
-                    <span class="final-score">Skor: <span id="score-set4">0</span></span>
-                    <span class="final-percent">Başarı: <span id="percent-set4">0</span>%</span>
-                </div>
+                <svg id="icon-voyager" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#39FF14" stroke-width="2"><path d="M12 2C8 2 5 6 5 10C5 12.3 6.2 14.3 8 15.5L12 22L16 15.5C17.8 14.3 19 12.3 19 10C19 6 16 2 12 2Z"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="12" y1="6" x2="12" y2="14"/></svg>
+                <div id="badge-set4" class="completion-badge"><span class="thumbs-up">👍</span><span class="final-score">Skor: <span id="score-set4">0</span></span><span class="final-percent">Başarı: <span id="percent-set4">0</span>%</span></div>
             </div>
-
             <div class="machine-card" onclick="openGame('set5', 'CASSINI RINGS')">
                 <h2>CASSINI RINGS</h2>
-                <svg id="icon-cassini" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="6"/>
-                    <ellipse cx="12" cy="12" rx="10" ry="3" transform="rotate(-20 12 12)"/>
-                </svg>
-                <div id="badge-set5" class="completion-badge">
-                    <span class="thumbs-up">👍</span>
-                    <span class="final-score">Skor: <span id="score-set5">0</span></span>
-                    <span class="final-percent">Başarı: <span id="percent-set5">0</span>%</span>
-                </div>
+                <svg id="icon-cassini" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2"><circle cx="12" cy="12" r="6"/><ellipse cx="12" cy="12" rx="10" ry="3" transform="rotate(-20 12 12)"/></svg>
+                <div id="badge-set5" class="completion-badge"><span class="thumbs-up">👍</span><span class="final-score">Skor: <span id="score-set5">0</span></span><span class="final-percent">Başarı: <span id="percent-set5">0</span>%</span></div>
             </div>
-
             <div class="machine-card" onclick="openGame('set6', 'ARTEMIS LUNAR')">
                 <h2>ARTEMIS LUNAR</h2>
-                <svg id="icon-artemis" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#FF00FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
-                </svg>
-                <div id="badge-set6" class="completion-badge">
-                    <span class="thumbs-up">👍</span>
-                    <span class="final-score">Skor: <span id="score-set6">0</span></span>
-                    <span class="final-percent">Başarı: <span id="percent-set6">0</span>%</span>
-                </div>
+                <svg id="icon-artemis" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#FF00FF" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+                <div id="badge-set6" class="completion-badge"><span class="thumbs-up">👍</span><span class="final-score">Skor: <span id="score-set6">0</span></span><span class="final-percent">Başarı: <span id="percent-set6">0</span>%</span></div>
             </div>
         </div>
     </div>
@@ -563,29 +447,16 @@
                 <button id="back-btn" onclick="returnToLobby()">◀ Lobby</button>
                 <h1 id="game-title">COSMIC REELS</h1>
             </div>
-            
-            <div id="reel-window">
-                <div id="reel-strip">
-                    </div>
-            </div>
-
+            <div id="reel-window"><div id="reel-strip"></div></div>
             <div id="meters">
-                <div class="meter">
-                    <span class="meter-title">SCORE</span>
-                    <span id="score-amount">0</span> <span class="dim-text">/ <span id="score-max">0</span></span>
-                </div>
-                <div class="meter">
-                    <span class="meter-title">SUCCESS</span>
-                    <span id="percentage-amount">0</span><span class="percent-sign">%</span>
-                </div>
+                <div class="meter"><span class="meter-title">SCORE</span><span id="score-amount">0</span> <span class="dim-text">/ <span id="score-max">0</span></span></div>
+                <div class="meter"><span class="meter-title">SUCCESS</span><span id="percentage-amount">0</span><span class="percent-sign">%</span></div>
             </div>
-
             <div id="action-panel">
                 <button id="btn-tick" class="action-btn" onclick="handleAnswer(true)">✅ I got it</button>
                 <button id="btn-hint" class="action-btn" onclick="showHint()">Check the Answer</button>
                 <button id="btn-cross" class="action-btn" onclick="handleAnswer(false)">❌ I failed</button>
             </div>
-
             <div id="controls">
                 <div id="timer-display">10</div>
                 <button id="spin-btn" onclick="spinMachine()">SPIN</button>
@@ -594,12 +465,7 @@
         </div>
     </div>
 
-    <div id="custom-modal">
-        <div class="modal-content">
-            <p>Sistem Taraması Tamamlandı!<br><br>Şimdi sadece yanlış bildiklerini tekrar edeceğiz. Puan yok, sadece odaklan!</p>
-            <button class="modal-btn" onclick="startRedemptionRound()">ONAYLA</button>
-        </div>
-    </div>
+    <div id="custom-modal"><div class="modal-content"><p>Sistem Taraması Tamamlandı!<br><br>Şimdi sadece yanlış bildiklerini tekrar edeceğiz. Puan yok, sadece odaklan!</p><button class="modal-btn" onclick="startRedemptionRound()">ONAYLA</button></div></div>
 
     <script>
         const allSentenceData = {
@@ -641,7 +507,7 @@
                 { tr: "Bizi kötü hava koşullarına karşı uyarmak zorundaydı.", en: "He had to warn us about the bad weather." },
                 { tr: "Bir dakika çantamı tutmalısın.", en: "You should hold my bag for a minute." }
             ],
-            "set2": [ 
+            "set2": [
                 { tr: "Fırtına şehri yıkabilir.", en: "The storm can destroy the city." },
                 { tr: "Askerler şu anda casusu yakalıyor.", en: "The soldiers are capturing the spy right now." },
                 { tr: "İyi bir lider takımına ilham verir.", en: "A good leader inspires their team." },
@@ -679,7 +545,44 @@
                 { tr: "Radyo insanları fırtınaya karşı uyarıyor.", en: "The radio is warning the people about the storm." },
                 { tr: "Lütfen bir saniye kahvemi tutabilir misin?", en: "Can you hold my coffee for a second?" }
             ],
-            "set3": [ { tr: "Örnek Cümle 1", en: "Example Sentence 1" } ],
+            "set3": [
+                { tr: "Romalılar Kartaca'yı yıktı.", en: "The Romans destroyed Carthage." },
+                { tr: "İngilizler düşman gemisini ele geçirdi.", en: "The British captured the enemy ship." },
+                { tr: "Jeanne d'Arc Fransız ordusuna ilham verdi.", en: "Joan of Arc inspired the French army." },
+                { tr: "Romalılar Hannibal'dan korkardı.", en: "The Romans feared Hannibal." },
+                { tr: "Napolyon cesur askerlerini övdü.", en: "Napoleon praised his brave soldiers." },
+                { tr: "Antik Truva şehri yüzyıllarca gizli kaldı.", en: "The ancient city of Troy remained hidden for centuries." },
+                { tr: "Birçok general Büyük İskender'e hayranlık duyardı.", en: "Many generals admired Alexander the Great." },
+                { tr: "Sparta, Atina imparatorluğuna katılmayı reddetti.", en: "Sparta refused to join the Athenian empire." },
+                { tr: "Ani saldırı savunan birlikleri korkuttu.", en: "The sudden attack scared the defending troops." },
+                { tr: "Yunanlılar Pers işgaline direndi.", en: "The Greeks resisted the Persian invasion." },
+                { tr: "Wellington, Waterloo'da Napolyon'u yendi.", en: "Wellington defeated Napoleon at Waterloo." },
+                { tr: "Bismarck Alman devletlerini birleştirdi.", en: "Bismarck united the German states." },
+                { tr: "Askerler Stalingrad'ı şiddetle savundu.", en: "The soldiers defended Stalingrad fiercely." },
+                { tr: "Roma ordusu Alesia şehrini kuşattı.", en: "The Roman army surrounded the city of Alesia." },
+                { tr: "Sert kış, orduyu geri çekilmeye zorladı.", en: "The harsh winter forced the army to retreat." },
+                { tr: "General Lee Appomattox'ta teslim oldu.", en: "General Lee surrendered at Appomattox." },
+                { tr: "Askeri doktorlar yaralı askerleri sahra hastanesinden taburcu etti.", en: "The military doctors released the wounded soldiers from the field hospital." },
+                { tr: "Savaştan sonra ekonomide büyük bir dalgalanma oldu.", en: "There was a massive fluctuation in the economy after the war." },
+                { tr: "Yakalanan casus sabotaj planlarını itiraf etti.", en: "The captured spy confessed his sabotage plans." },
+                { tr: "Kral kimsenin otoritesini sorgulamasına izin vermedi.", en: "The king did not permit anyone to question his authority." },
+                { tr: "Churchill Almanya'ya karşı savaşa devam etmekte ısrar etti.", en: "Churchill insisted on continuing the fight against Germany." },
+                { tr: "Galileo güneş sistemi hakkındaki eski teorileri düzeltti.", en: "Galileo corrected the old theories about the solar system." },
+                { tr: "Spartalı askerler komutanlarına sorgusuz sualsiz itaat ederdi.", en: "The Spartan soldiers obeyed their commanders without question." },
+                { tr: "Çok az denizci haritası çıkarılmamış okyanusu geçmeye cesaret edebildi.", en: "Few sailors dared to cross the uncharted ocean." },
+                { tr: "Kaptan Titanik batmadan önce buzdağı uyarılarını görmezden geldi.", en: "The captain ignored the iceberg warnings before the Titanic sank." },
+                { tr: "Amerika Birleşik Devletleri 1917'de Birinci Dünya Savaşı'na müdahale etti.", en: "The United States intervened in the First World War in 1917." },
+                { tr: "Wright kardeşler ilk başarılı uçağı icat etti.", en: "The Wright brothers invented the first successful airplane." },
+                { tr: "Mısır piramitlerini inşa etmek binlerce işçi gerektiriyordu.", en: "Building the Egyptian pyramids required thousands of workers." },
+                { tr: "Gaziler eski komutanlarını hemen tanıdılar.", en: "The veterans immediately recognized their old commander." },
+                { tr: "Kolezyum'un kalıntıları bize Roma İmparatorluğu'nu hatırlatır.", en: "The ruins of the Colosseum remind us of the Roman Empire." },
+                { tr: "Çin Seddi, Çin'i kuzeyli işgalcilerden korudu.", en: "The Great Wall protected China from northern invaders." },
+                { tr: "Yeni sınırlar geleneksel kabile topraklarıyla çelişiyordu.", en: "The new borders conflicted with the traditional tribal lands." },
+                { tr: "Rosetta Taşı aslen antik bir Mısır tapınağına aitti.", en: "The Rosetta Stone originally belonged to an ancient Egyptian temple." },
+                { tr: "Muhafızlar ufuktaki düşman gemilerini fark etti.", en: "The guards noticed the enemy ships on the horizon." },
+                { tr: "Paul Revere kolonistleri İngiliz yürüyüşüne karşı uyardı.", en: "Paul Revere warned the colonists about the British march." },
+                { tr: "Cesur Spartalılar Thermopylae'deki dar geçidi tuttu.", en: "The brave Spartans held the narrow pass at Thermopylae." }
+            ],
             "set4": [ { tr: "Örnek Cümle 1", en: "Example Sentence 1" } ],
             "set5": [ { tr: "Örnek Cümle 1", en: "Example Sentence 1" } ],
             "set6": [ { tr: "Örnek Cümle 1", en: "Example Sentence 1" } ]
@@ -689,13 +592,11 @@
         let unseenPool = [];
         let retryPool = [];
         let currentPhase = 1; 
-        
         let score = 0;
         let maxScore = 0;
         let correctCount = 0;
         let totalAttempts = 0;
         let successPercentage = 0;
-
         let isSpinning = false;
         let currentTargetIndex = -1;
         let countdownTimer;
@@ -721,18 +622,14 @@
 
         function updateLobbyUI() {
             const progress = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-            
             for (let i = 1; i <= 6; i++) {
                 const setId = 'set' + i;
                 const badge = document.getElementById('badge-' + setId);
-                
                 if (progress[setId] !== undefined) {
                     badge.classList.add('visible');
                     document.getElementById('score-' + setId).innerText = progress[setId].score;
                     document.getElementById('percent-' + setId).innerText = progress[setId].percent;
-                } else {
-                    badge.classList.remove('visible');
-                }
+                } else { badge.classList.remove('visible'); }
             }
         }
 
@@ -748,32 +645,23 @@
             unseenPool = JSON.parse(JSON.stringify(allSentenceData[setId]));
             retryPool = [];
             currentPhase = 1;
-
-            score = 0;
-            correctCount = 0;
-            totalAttempts = 0;
-            successPercentage = 0;
+            score = 0; correctCount = 0; totalAttempts = 0; successPercentage = 0;
             maxScore = unseenPool.length * 100;
-            
             scoreDisplay.innerText = score;
             scoreMaxDisplay.innerText = maxScore;
             percentageDisplay.innerText = "0";
-            gameTitleDisplay.innerText = cityName + " REELS";
-            
+            gameTitleDisplay.innerText = cityName;
             lobbyView.style.display = 'none';
             gameView.style.display = 'block';
-
             spinBtn.style.display = 'block';
             spinBtn.disabled = false;
             finishBtn.style.display = 'none';
-            
             btnTick.style.display = 'none';
             btnCross.style.display = 'none';
             btnHint.style.display = 'none';
             timerDisplay.style.display = 'none';
             customModal.style.display = 'none';
-
-            reelStrip.innerHTML = `<div class="sentence-item"><span class="turkish-text">SPIN'e basarak başla!</span></div>`;
+            reelStrip.innerHTML = `<div class="sentence-item"><span class="turkish-text">SİSTEM HAZIR. BAŞLATIN.</span></div>`;
             reelStrip.style.transform = `translateY(0px)`;
         }
 
@@ -791,7 +679,7 @@
         }
 
         function endGame() {
-            reelStrip.innerHTML = `<div class="sentence-item"><span class="turkish-text" style="color:#39FF14;">SİSTEM BAŞARILI!<br>Bölüm Bitti!</span></div>`;
+            reelStrip.innerHTML = `<div class="sentence-item"><span class="turkish-text" style="color:#39FF14;">GÖREV BAŞARILI!</span></div>`;
             spinBtn.style.display = 'none';
             finishBtn.style.display = 'block';
             saveCompletion(); 
@@ -800,33 +688,20 @@
         function startRedemptionRound() {
             customModal.style.display = 'none';
             isSpinning = false;
-            spinBtn.disabled = false;
             spinMachine(); 
         }
 
         function spinMachine() {
             if (isSpinning) return;
-
             if (unseenPool.length === 0 && currentPhase === 1) {
-                if (retryPool.length === 0) {
-                    endGame();
-                    return;
-                } else {
-                    currentPhase = 2; 
-                    customModal.style.display = 'flex'; 
-                    return; 
-                }
+                if (retryPool.length === 0) { endGame(); return; }
+                else { currentPhase = 2; customModal.style.display = 'flex'; return; }
             }
-
-            if (unseenPool.length === 0 && retryPool.length === 0) {
-                endGame();
-                return;
-            }
+            if (unseenPool.length === 0 && retryPool.length === 0) { endGame(); return; }
             
             isSpinning = true;
             spinBtn.disabled = true;
             spinBtn.style.display = 'none'; 
-            
             btnTick.style.display = 'none';
             btnCross.style.display = 'none';
             btnHint.style.display = 'none';
@@ -835,7 +710,6 @@
             let activePool = currentPhase === 1 ? unseenPool : retryPool;
             currentTargetIndex = Math.floor(Math.random() * activePool.length);
             const targetData = activePool[currentTargetIndex];
-
             const totalItemsInSpin = 20; 
             reelStrip.innerHTML = '';
             reelStrip.style.transition = 'none';
@@ -844,107 +718,60 @@
             for (let i = 0; i < totalItemsInSpin; i++) {
                 const div = document.createElement('div');
                 div.className = 'sentence-item';
-                
                 if (i === totalItemsInSpin - 1) {
-                    div.innerHTML = `
-                        <span class="turkish-text">${targetData.tr}</span>
-                        <span class="english-text" id="active-english">${targetData.en}</span>
-                    `;
+                    div.innerHTML = `<span class="turkish-text">${targetData.tr}</span><span class="english-text" id="active-english">${targetData.en}</span>`;
                 } else {
                     const randomPhrase = activePool[Math.floor(Math.random() * activePool.length)].tr;
                     div.innerHTML = `<span class="turkish-text">${randomPhrase}</span>`;
                 }
                 reelStrip.appendChild(div);
             }
-
             void reelStrip.offsetWidth; 
-
             const targetY = -((totalItemsInSpin - 1) * itemHeight);
-
             reelStrip.style.transition = 'transform 2.0s cubic-bezier(0.1, 0.1, 0.1, 1), filter 2.0s ease-out';
             reelStrip.style.filter = 'blur(3px)';
             reelStrip.style.transform = `translateY(${targetY}px)`;
-
             setTimeout(() => { reelStrip.style.filter = 'blur(0px)'; }, 1500);
-
-            setTimeout(() => {
-                isSpinning = false;
-                startActionPhase();
-            }, 2000); 
+            setTimeout(() => { isSpinning = false; startActionPhase(); }, 2000); 
         }
 
         function startActionPhase() {
-            btnTick.style.display = 'block';
-            btnCross.style.display = 'block';
-            timerDisplay.style.display = 'block';
-            btnHint.style.display = 'block';
-            
-            btnTick.disabled = true;
-            btnCross.disabled = true;
-            
-            btnHint.disabled = false; 
-
+            btnTick.style.display = 'block'; btnCross.style.display = 'block'; btnHint.style.display = 'block'; timerDisplay.style.display = 'block';
+            btnTick.disabled = true; btnCross.disabled = true; btnHint.disabled = false; 
             countdownValue = 10;
             timerDisplay.innerText = countdownValue;
-
             countdownTimer = setInterval(() => {
                 countdownValue--;
                 timerDisplay.innerText = countdownValue;
-                
-                if (countdownValue <= 0) {
-                    clearInterval(countdownTimer);
-                }
+                if (countdownValue <= 0) { clearInterval(countdownTimer); }
             }, 1000);
         }
 
         function showHint() {
             clearInterval(countdownTimer); 
             document.getElementById('active-english').style.display = 'block';
-            btnHint.disabled = true; 
-            btnTick.disabled = false;
-            btnCross.disabled = false;
+            btnHint.disabled = true; btnTick.disabled = false; btnCross.disabled = false;
         }
 
         function handleAnswer(isSuccess) {
             clearInterval(countdownTimer);
             let activePool = currentPhase === 1 ? unseenPool : retryPool;
             const answeredItem = activePool[currentTargetIndex];
-
             if (currentPhase === 1) {
                 totalAttempts++;
-                if (isSuccess) {
-                    score += 100;
-                    correctCount++;
-                } else {
-                    retryPool.push(answeredItem); 
-                }
-                
+                if (isSuccess) { score += 100; correctCount++; }
+                else { retryPool.push(answeredItem); }
                 scoreDisplay.innerText = score;
                 successPercentage = Math.round((correctCount / totalAttempts) * 100);
                 percentageDisplay.innerText = successPercentage;
-                
                 unseenPool.splice(currentTargetIndex, 1); 
-                
             } else if (currentPhase === 2) {
-                if (isSuccess) {
-                    retryPool.splice(currentTargetIndex, 1);
-                }
+                if (isSuccess) { retryPool.splice(currentTargetIndex, 1); }
             }
-
-            btnTick.style.display = 'none';
-            btnCross.style.display = 'none';
-            btnHint.style.display = 'none';
-            timerDisplay.style.display = 'none';
-            
-            if (unseenPool.length === 0 && retryPool.length === 0) {
-                endGame();
-            } else {
-                setTimeout(() => {
-                    spinMachine();
-                }, 400); 
-            }
+            btnTick.style.display = 'none'; btnCross.style.display = 'none'; btnHint.style.display = 'none'; timerDisplay.style.display = 'none';
+            if (unseenPool.length === 0 && retryPool.length === 0) { endGame(); }
+            else { setTimeout(() => { spinMachine(); }, 400); }
         }
-
         updateLobbyUI();
     </script>
 </body>
