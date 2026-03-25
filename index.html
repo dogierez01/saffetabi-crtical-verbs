@@ -141,7 +141,7 @@
             font-size: 28px;
             margin-bottom: 5px;
             display: block;
-            filter: grayscale(100%) brightness(200%) sepia(100%) hue-rotate(90deg) saturate(300%); /* Make emoji greenish */
+            filter: grayscale(100%) brightness(200%) sepia(100%) hue-rotate(90deg) saturate(300%);
         }
 
         .final-score {
@@ -247,7 +247,7 @@
         }
 
         .english-text {
-            color: #b366ff; /* Sci-fi purple for English text */
+            color: #b366ff; 
             font-size: 42px; 
             margin-top: 10px;
             font-weight: bold; 
@@ -286,7 +286,6 @@
 
         .dim-text { color: #5c6bc0; font-size: 24px; }
         
-        /* Bright yellow for success percentage */
         #percentage-amount, .percent-sign {
             color: #FFFF00;
             text-shadow: 0 0 15px rgba(255, 255, 0, 0.8);
@@ -354,7 +353,6 @@
             min-height: 90px;
         }
 
-        /* Bottom Left Neon Green Timer */
         #timer-display {
             color: #39FF14;
             font-size: 54px;
@@ -394,6 +392,7 @@
             box-shadow: none; 
             cursor: not-allowed; 
             transform: none; 
+            display: none; /* Hide SPIN button entirely during auto-spins to keep UI clean */
         }
 
         #finish-btn {
@@ -681,7 +680,6 @@
         const gameTitleDisplay = document.getElementById('game-title');
         const customModal = document.getElementById('custom-modal');
 
-        // Note: Unique local storage key for the Space theme so it doesn't conflict with Casino
         const STORAGE_KEY = 'spaceArcadeProgress';
 
         function updateLobbyUI() {
@@ -790,6 +788,7 @@
             
             isSpinning = true;
             spinBtn.disabled = true;
+            spinBtn.style.display = 'none'; // Hide SPIN during auto-spins to keep UI clean
             
             btnTick.style.display = 'none';
             btnCross.style.display = 'none';
@@ -846,7 +845,6 @@
             btnTick.disabled = true;
             btnCross.disabled = true;
             
-            // The "Check the Answer" button is instantly clickable
             btnHint.disabled = false; 
 
             countdownValue = 10;
@@ -863,7 +861,7 @@
         }
 
         function showHint() {
-            clearInterval(countdownTimer); // Instantly stops the timer when clicked
+            clearInterval(countdownTimer); 
             document.getElementById('active-english').style.display = 'block';
             btnHint.disabled = true; 
             btnTick.disabled = false;
@@ -904,7 +902,10 @@
             if (unseenPool.length === 0 && retryPool.length === 0) {
                 endGame();
             } else {
-                spinBtn.disabled = false;
+                // AUTO-SPIN LOGIC: Tiny 400ms delay so the brain registers the button click
+                setTimeout(() => {
+                    spinMachine();
+                }, 400); 
             }
         }
 
