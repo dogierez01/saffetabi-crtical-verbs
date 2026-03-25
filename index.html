@@ -392,7 +392,7 @@
             box-shadow: none; 
             cursor: not-allowed; 
             transform: none; 
-            display: none; /* Hide SPIN button entirely during auto-spins to keep UI clean */
+            display: none; 
         }
 
         #finish-btn {
@@ -641,7 +641,44 @@
                 { tr: "Bizi kötü hava koşullarına karşı uyarmak zorundaydı.", en: "He had to warn us about the bad weather." },
                 { tr: "Bir dakika çantamı tutmalısın.", en: "You should hold my bag for a minute." }
             ],
-            "set2": [ { tr: "Örnek Cümle 1", en: "Example Sentence 1" } ],
+            "set2": [ 
+                { tr: "Fırtına şehri yıkabilir.", en: "The storm can destroy the city." },
+                { tr: "Askerler şu anda casusu yakalıyor.", en: "The soldiers are capturing the spy right now." },
+                { tr: "İyi bir lider takımına ilham verir.", en: "A good leader inspires their team." },
+                { tr: "Köpekler gök gürültüsünden korkar.", en: "Dogs fear the thunder." },
+                { tr: "Müşteri yeni ürünü övüyor.", en: "The customer is praising the new product." },
+                { tr: "Mağaza gece yarısına kadar açık kalır.", en: "The store remains open until midnight." },
+                { tr: "Herkes onun yeteneğine hayran olabilir.", en: "Everyone can admire his talent." },
+                { tr: "O bu teklifi reddedebilecek.", en: "He will be able to refuse this offer." },
+                { tr: "Örümcekler genellikle kız kardeşimi korkutur.", en: "Spiders usually scare my sister." },
+                { tr: "Şirket yeni kurallara direniyor.", en: "The company is resisting the new rules." },
+                { tr: "Şampiyonu kolayca yenebiliriz.", en: "We could defeat the champion easily." },
+                { tr: "Müzik farklı kültürleri birleştirir.", en: "Music unites different cultures." },
+                { tr: "Avukat masum adamı savunabilecek.", en: "The lawyer will be able to defend the innocent man." },
+                { tr: "Ağaçlar yeni evi çevreliyor.", en: "Trees are surrounding the new house." },
+                { tr: "Kimse seni konuşmaya zorlayamaz.", en: "Nobody can force you to speak." },
+                { tr: "İsyancılar asla teslim olmaz.", en: "The rebels never surrender." },
+                { tr: "Hemşireler hastayı yarın taburcu edebilecek.", en: "The nurses will be able to release the patient tomorrow." },
+                { tr: "Döviz kurlarında her zaman dalgalanma olur.", en: "There is always a fluctuation in exchange rates." },
+                { tr: "Hırsız her an gerçeği itiraf edebilir.", en: "The thief could confess the truth at any moment." },
+                { tr: "Kütüphane içeri yiyecek sokmaya izin vermez.", en: "The library does not permit food inside." },
+                { tr: "Yönetici yeni projede ısrar ediyor.", en: "The manager is insisting on the new project." },
+                { tr: "Sadece yazar bu hatayı düzeltebilir.", en: "Only the author can correct this mistake." },
+                { tr: "İyi vatandaşlar kanunlara uyar.", en: "Good citizens obey the laws." },
+                { tr: "Kimse o karanlık odaya girmeye cesaret edemez.", en: "Nobody could dare to enter that dark room." },
+                { tr: "Çocuklar şu anda uyarıları görmezden geliyor.", en: "The children are ignoring the warnings right now." },
+                { tr: "Hükümet yakında krize müdahale edebilecek.", en: "The government will be able to intervene in the crisis soon." },
+                { tr: "Bilim insanları yeni bir makine icat edebilir.", en: "Scientists can invent a new machine." },
+                { tr: "Bitkiler su ve güneş ışığı gerektirir.", en: "Plants require water and sunlight." },
+                { tr: "Yazılım artık yüzleri tanıyor.", en: "The software is recognizing faces now." },
+                { tr: "Asistan sana randevunu hatırlatabilir.", en: "The assistant could remind you of your appointment." },
+                { tr: "Aşı bizi virüse karşı koruyabilecek.", en: "The vaccine will be able to protect us against the virus." },
+                { tr: "Onun hikayesi her zaman gerçeklerle çelişir.", en: "His story always conflicts with the facts." },
+                { tr: "Bu mavi kalem bana ait.", en: "This blue pen belongs to me." },
+                { tr: "Herkes tablodaki detayı fark edebilir.", en: "Everyone can notice the detail in the painting." },
+                { tr: "Radyo insanları fırtınaya karşı uyarıyor.", en: "The radio is warning the people about the storm." },
+                { tr: "Lütfen bir saniye kahvemi tutabilir misin?", en: "Can you hold my coffee for a second?" }
+            ],
             "set3": [ { tr: "Örnek Cümle 1", en: "Example Sentence 1" } ],
             "set4": [ { tr: "Örnek Cümle 1", en: "Example Sentence 1" } ],
             "set5": [ { tr: "Örnek Cümle 1", en: "Example Sentence 1" } ],
@@ -788,7 +825,7 @@
             
             isSpinning = true;
             spinBtn.disabled = true;
-            spinBtn.style.display = 'none'; // Hide SPIN during auto-spins to keep UI clean
+            spinBtn.style.display = 'none'; 
             
             btnTick.style.display = 'none';
             btnCross.style.display = 'none';
@@ -902,7 +939,6 @@
             if (unseenPool.length === 0 && retryPool.length === 0) {
                 endGame();
             } else {
-                // AUTO-SPIN LOGIC: Tiny 400ms delay so the brain registers the button click
                 setTimeout(() => {
                     spinMachine();
                 }, 400); 
