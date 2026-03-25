@@ -283,7 +283,7 @@
                 { tr: "Takımımız rakiplerini yenmişti.", en: "Our team had defeated their opponents." },
                 { tr: "Lider insanları birleştirirdi.", en: "The leader used to unite the people." },
                 { tr: "Ordu ülkeyi savunmalı.", en: "The army should defend the country." },
-                { tr: "Yüksek duvarlar bahçeyi çevreliyordu.", en: "High walls were surrounding the garden." },
+                { tr: "Yüksek duvarlar bahçeyi çevreliyor.", en: "High walls were surrounding the garden." },
                 { tr: "Beni bunu yapmaya zorlamak zorundaydılar.", en: "They had to force me to do this." },
                 { tr: "Askerler sonunda teslim olmuştu.", en: "The soldiers had finally surrendered." },
                 { tr: "Doktorlar onu hastaneden taburcu etmeli.", en: "The doctors should release him from the hospital." },
@@ -459,39 +459,65 @@
                 { tr: "Levha tehlikeye karşı uyarır.", en: "The sign warns against danger." },
                 { tr: "Çantayı her zaman böyle tutar.", en: "He always holds the bag like this." }
             ],
-            "set6": [ { tr: "Örnek Cümle 1", en: "Example Sentence 1" } ]
+            "set6": [
+                { tr: "Osmanlılar, İstanbul'u almadan önce surları yıkmıştı.", en: "The Ottomans had destroyed the walls before taking Istanbul." },
+                { tr: "Yeniçeriler kaleyi ele geçirmişti.", en: "The Janissaries had captured the fortress." },
+                { tr: "Mevlana'nın öğretileri halka ilham vermişti.", en: "Rumi’s teachings had inspired the people." },
+                { tr: "Bizanslılar Osmanlı akıncılarından korkmuştu.", en: "The Byzantines had feared the Ottoman raiders." },
+                { tr: "Padişah başarılı veziri övüyordu.", en: "The Sultan was praising the successful vizier." },
+                { tr: "Bazı kaleler hâlâ direnişte kalıyordu.", en: "Some fortresses were still remaining in resistance." },
+                { tr: "Avrupalı elçiler Osmanlı mimarisine hayran kalıyordu.", en: "European ambassadors were admiring the Ottoman architecture." },
+                { tr: "Venedikliler yeni anlaşmayı reddediyordu.", en: "The Venetians were refusing the new treaty." },
+                { tr: "Top sesleri düşman ordusunu korkuturdu.", en: "The sound of cannons used to scare the enemy army." },
+                { tr: "Şövalyeler kuşatmalara aylarca direnirdi.", en: "The knights used to resist the sieges for months." },
+                { tr: "Osmanlı ordusu rakiplerini sık sık yenerdi.", en: "The Ottoman army used to defeat its rivals frequently." },
+                { tr: "Padişah farklı beylikleri birleştirirdi.", en: "The Sultan used to unite different principalities." },
+                { tr: "Muhafızlar başkenti savunmak zorundaydı.", en: "The guards had to defend the capital." },
+                { tr: "Ordu Viyana'yı çevrelemek zorundaydı.", en: "The army had to surround Vienna." },
+                { tr: "Paşa, askerleri köprüyü geçmeye zorlamak zorundaydı.", en: "The Pasha had to force the soldiers to cross the bridge." },
+                { tr: "Kale komutanı sonunda teslim olmak zorundaydı.", en: "The fortress commander finally had to surrender." },
+                { tr: "Hekimbaşı yaralı askerleri hastaneden taburcu edebilir.", en: "The chief physician can release the wounded soldiers from the hospital." },
+                { tr: "Akçenin değerinde dalgalanma olabilir.", en: "There can be a fluctuation in the value of the silver coin." },
+                { tr: "Esir alınan casus her şeyi itiraf edebilir.", en: "The captured spy can confess everything." },
+                { tr: "Padişah yeni bir cami yapılmasına izin verebilir.", en: "The Sultan can permit the construction of a new mosque." },
+                { tr: "Elçi kapitülasyonlar için ısrar edebilirdi.", en: "The ambassador could insist on the capitulations." },
+                { tr: "Hattat yazmadaki bir hatayı düzeltebilirdi.", en: "The calligrapher could correct a mistake in the writing." },
+                { tr: "Tebaa fermanlara uyabilirdi.", en: "The subjects could obey the edicts." },
+                { tr: "Kimse Padişahın huzurunda yüksek sesle konuşmaya cesaret edebilirdi.", en: "Someone could dare to speak loudly in the Sultan's presence." },
+                { tr: "Bazı valiler şu an emirleri görmezden geliyor.", en: "Some governors are ignoring the orders right now." },
+                { tr: "Sadrazam şu an divandaki tartışmaya müdahale ediyor.", en: "The Grand Vizier is intervening in the discussion at the divan right now." },
+                { tr: "Mühendisler şu an yeni bir kuşatma aleti icat ediyor.", en: "The engineers are inventing a new siege tool right now." },
+                { tr: "Donanmanın inşası şu an büyük bir çaba gerektiriyor.", en: "The construction of the navy is requiring a great effort right now." },
+                { tr: "Devlet, komşu krallığın bağımsızlığını tanımalı.", en: "The state should recognize the independence of the neighboring kingdom." },
+                { tr: "Katip, vezire toplantıyı hatırlatmalı.", en: "The secretary should remind the director of the meeting." },
+                { tr: "Kale surları şehri korumalı.", en: "The fortress walls should protect the city." },
+                { tr: "Yeni kanunlar geleneklerle çelişmemeli.", en: "New laws should not conflict with traditions." },
+                { tr: "Bu topraklar Osmanlı İmparatorluğu'na aittir.", en: "These lands belong to the Ottoman Empire." },
+                { tr: "Gözcü ufuktaki gemileri her zaman fark eder.", en: "The scout always notices the ships on the horizon." },
+                { tr: "Ferman halkı isyana karşı uyarır.", en: "The edict warns the people against rebellion." },
+                { tr: "Muhafızlar stratejik geçidi her zaman tutar.", en: "The guards always hold the strategic pass." }
+            ]
         };
 
-        let currentSetId = null;
-        let unseenPool = [];
-        let retryPool = [];
-        let currentPhase = 1; 
-        let score = 0; let maxScore = 0; let correctCount = 0; let totalAttempts = 0; let successPercentage = 0;
-        let isSpinning = false; let currentTargetIndex = -1; let countdownTimer; let countdownValue = 10;
+        let currentSetId = null, unseenPool = [], retryPool = [], currentPhase = 1; 
+        let score = 0, maxScore = 0, correctCount = 0, totalAttempts = 0, successPercentage = 0;
+        let isSpinning = false, currentTargetIndex = -1, countdownTimer, countdownValue = 10;
         const itemHeight = 220; 
 
-        const lobbyView = document.getElementById('lobby-view');
-        const gameView = document.getElementById('game-view');
-        const reelStrip = document.getElementById('reel-strip');
-        const spinBtn = document.getElementById('spin-btn');
-        const finishBtn = document.getElementById('finish-btn');
-        const btnTick = document.getElementById('btn-tick');
-        const btnCross = document.getElementById('btn-cross');
-        const btnHint = document.getElementById('btn-hint');
-        const timerDisplay = document.getElementById('timer-display');
-        const scoreDisplay = document.getElementById('score-amount');
-        const scoreMaxDisplay = document.getElementById('score-max');
-        const percentageDisplay = document.getElementById('percentage-amount');
-        const gameTitleDisplay = document.getElementById('game-title');
-        const customModal = document.getElementById('custom-modal');
+        const lobbyView = document.getElementById('lobby-view'), gameView = document.getElementById('game-view');
+        const reelStrip = document.getElementById('reel-strip'), spinBtn = document.getElementById('spin-btn');
+        const finishBtn = document.getElementById('finish-btn'), btnTick = document.getElementById('btn-tick');
+        const btnCross = document.getElementById('btn-cross'), btnHint = document.getElementById('btn-hint');
+        const timerDisplay = document.getElementById('timer-display'), scoreDisplay = document.getElementById('score-amount');
+        const scoreMaxDisplay = document.getElementById('score-max'), percentageDisplay = document.getElementById('percentage-amount');
+        const gameTitleDisplay = document.getElementById('game-title'), customModal = document.getElementById('custom-modal');
 
         const STORAGE_KEY = 'spaceArcadeProgress';
 
         function updateLobbyUI() {
             const progress = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
             for (let i = 1; i <= 6; i++) {
-                const setId = 'set' + i;
-                const badge = document.getElementById('badge-' + setId);
+                const setId = 'set' + i, badge = document.getElementById('badge-' + setId);
                 if (progress[setId] !== undefined) {
                     badge.classList.add('visible');
                     document.getElementById('score-' + setId).innerText = progress[setId].score;
@@ -500,44 +526,22 @@
             }
         }
 
-        function resetAllProgress() {
-            if(confirm("Tüm uzay üssü skorlarını silmek istediğine emin misin?")) {
-                localStorage.removeItem(STORAGE_KEY);
-                updateLobbyUI();
-            }
-        }
+        function resetAllProgress() { if(confirm("Tüm uzay üssü skorlarını silmek istediğine emin misin?")) { localStorage.removeItem(STORAGE_KEY); updateLobbyUI(); } }
 
         function openGame(setId, cityName) {
-            currentSetId = setId;
-            unseenPool = JSON.parse(JSON.stringify(allSentenceData[setId]));
-            retryPool = [];
-            currentPhase = 1;
-            score = 0; correctCount = 0; totalAttempts = 0; successPercentage = 0;
-            maxScore = unseenPool.length * 100;
-            scoreDisplay.innerText = score;
-            scoreMaxDisplay.innerText = maxScore;
-            percentageDisplay.innerText = "0";
-            gameTitleDisplay.innerText = cityName;
-            lobbyView.style.display = 'none';
-            gameView.style.display = 'block';
-            spinBtn.style.display = 'block';
-            spinBtn.disabled = false;
-            finishBtn.style.display = 'none';
-            btnTick.style.display = 'none';
-            btnCross.style.display = 'none';
-            btnHint.style.display = 'none';
-            timerDisplay.style.display = 'none';
-            customModal.style.display = 'none';
+            currentSetId = setId; unseenPool = JSON.parse(JSON.stringify(allSentenceData[setId]));
+            retryPool = []; currentPhase = 1; score = 0; correctCount = 0; totalAttempts = 0; successPercentage = 0;
+            maxScore = unseenPool.length * 100; scoreDisplay.innerText = score; scoreMaxDisplay.innerText = maxScore;
+            percentageDisplay.innerText = "0"; gameTitleDisplay.innerText = cityName;
+            lobbyView.style.display = 'none'; gameView.style.display = 'block';
+            spinBtn.style.display = 'block'; spinBtn.disabled = false; finishBtn.style.display = 'none';
+            btnTick.style.display = 'none'; btnCross.style.display = 'none'; btnHint.style.display = 'none';
+            timerDisplay.style.display = 'none'; customModal.style.display = 'none';
             reelStrip.innerHTML = `<div class="sentence-item"><span class="turkish-text">SİSTEM HAZIR. BAŞLATIN.</span></div>`;
             reelStrip.style.transform = `translateY(0px)`;
         }
 
-        function returnToLobby() {
-            clearInterval(countdownTimer);
-            gameView.style.display = 'none';
-            lobbyView.style.display = 'block';
-            updateLobbyUI();
-        }
+        function returnToLobby() { clearInterval(countdownTimer); gameView.style.display = 'none'; lobbyView.style.display = 'block'; updateLobbyUI(); }
 
         function saveCompletion() {
             let progress = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
@@ -547,16 +551,10 @@
 
         function endGame() {
             reelStrip.innerHTML = `<div class="sentence-item"><span class="turkish-text" style="color:#39FF14;">GÖREV BAŞARILI!</span></div>`;
-            spinBtn.style.display = 'none';
-            finishBtn.style.display = 'block';
-            saveCompletion(); 
+            spinBtn.style.display = 'none'; finishBtn.style.display = 'block'; saveCompletion(); 
         }
 
-        function startRedemptionRound() {
-            customModal.style.display = 'none';
-            isSpinning = false;
-            spinMachine(); 
-        }
+        function startRedemptionRound() { customModal.style.display = 'none'; isSpinning = false; spinMachine(); }
 
         function spinMachine() {
             if (isSpinning) return;
@@ -565,39 +563,20 @@
                 else { currentPhase = 2; customModal.style.display = 'flex'; return; }
             }
             if (unseenPool.length === 0 && retryPool.length === 0) { endGame(); return; }
-            
-            isSpinning = true;
-            spinBtn.disabled = true;
-            spinBtn.style.display = 'none'; 
-            btnTick.style.display = 'none';
-            btnCross.style.display = 'none';
-            btnHint.style.display = 'none';
-            timerDisplay.style.display = 'none';
-
+            isSpinning = true; spinBtn.disabled = true; spinBtn.style.display = 'none'; 
+            btnTick.style.display = 'none'; btnCross.style.display = 'none'; btnHint.style.display = 'none'; timerDisplay.style.display = 'none';
             let activePool = currentPhase === 1 ? unseenPool : retryPool;
             currentTargetIndex = Math.floor(Math.random() * activePool.length);
-            const targetData = activePool[currentTargetIndex];
-            const totalItemsInSpin = 20; 
-            reelStrip.innerHTML = '';
-            reelStrip.style.transition = 'none';
-            reelStrip.style.transform = `translateY(0px)`;
-
+            const targetData = activePool[currentTargetIndex], totalItemsInSpin = 20; 
+            reelStrip.innerHTML = ''; reelStrip.style.transition = 'none'; reelStrip.style.transform = `translateY(0px)`;
             for (let i = 0; i < totalItemsInSpin; i++) {
-                const div = document.createElement('div');
-                div.className = 'sentence-item';
-                if (i === totalItemsInSpin - 1) {
-                    div.innerHTML = `<span class="turkish-text">${targetData.tr}</span><span class="english-text" id="active-english">${targetData.en}</span>`;
-                } else {
-                    const randomPhrase = activePool[Math.floor(Math.random() * activePool.length)].tr;
-                    div.innerHTML = `<span class="turkish-text">${randomPhrase}</span>`;
-                }
+                const div = document.createElement('div'); div.className = 'sentence-item';
+                if (i === totalItemsInSpin - 1) { div.innerHTML = `<span class="turkish-text">${targetData.tr}</span><span class="english-text" id="active-english">${targetData.en}</span>`; }
+                else { div.innerHTML = `<span class="turkish-text">${activePool[Math.floor(Math.random() * activePool.length)].tr}</span>`; }
                 reelStrip.appendChild(div);
             }
-            void reelStrip.offsetWidth; 
-            const targetY = -((totalItemsInSpin - 1) * itemHeight);
-            reelStrip.style.transition = 'transform 2.0s cubic-bezier(0.1, 0.1, 0.1, 1), filter 2.0s ease-out';
-            reelStrip.style.filter = 'blur(3px)';
-            reelStrip.style.transform = `translateY(${targetY}px)`;
+            void reelStrip.offsetWidth; reelStrip.style.transition = 'transform 2.0s cubic-bezier(0.1, 0.1, 0.1, 1), filter 2.0s ease-out';
+            reelStrip.style.filter = 'blur(3px)'; reelStrip.style.transform = `translateY(${-(totalItemsInSpin - 1) * itemHeight}px)`;
             setTimeout(() => { reelStrip.style.filter = 'blur(0px)'; }, 1500);
             setTimeout(() => { isSpinning = false; startActionPhase(); }, 2000); 
         }
@@ -605,20 +584,11 @@
         function startActionPhase() {
             btnTick.style.display = 'block'; btnCross.style.display = 'block'; btnHint.style.display = 'block'; timerDisplay.style.display = 'block';
             btnTick.disabled = true; btnCross.disabled = true; btnHint.disabled = false; 
-            countdownValue = 10;
-            timerDisplay.innerText = countdownValue;
-            countdownTimer = setInterval(() => {
-                countdownValue--;
-                timerDisplay.innerText = countdownValue;
-                if (countdownValue <= 0) { clearInterval(countdownTimer); }
-            }, 1000);
+            countdownValue = 10; timerDisplay.innerText = countdownValue;
+            countdownTimer = setInterval(() => { countdownValue--; timerDisplay.innerText = countdownValue; if (countdownValue <= 0) clearInterval(countdownTimer); }, 1000);
         }
 
-        function showHint() {
-            clearInterval(countdownTimer); 
-            document.getElementById('active-english').style.display = 'block';
-            btnHint.disabled = true; btnTick.disabled = false; btnCross.disabled = false;
-        }
+        function showHint() { clearInterval(countdownTimer); document.getElementById('active-english').style.display = 'block'; btnHint.disabled = true; btnTick.disabled = false; btnCross.disabled = false; }
 
         function handleAnswer(isSuccess) {
             clearInterval(countdownTimer);
@@ -626,18 +596,13 @@
             const answeredItem = activePool[currentTargetIndex];
             if (currentPhase === 1) {
                 totalAttempts++;
-                if (isSuccess) { score += 100; correctCount++; }
-                else { retryPool.push(answeredItem); }
-                scoreDisplay.innerText = score;
-                successPercentage = Math.round((correctCount / totalAttempts) * 100);
-                percentageDisplay.innerText = successPercentage;
-                unseenPool.splice(currentTargetIndex, 1); 
-            } else if (currentPhase === 2) {
-                if (isSuccess) { retryPool.splice(currentTargetIndex, 1); }
-            }
+                if (isSuccess) { score += 100; correctCount++; } else { retryPool.push(answeredItem); }
+                scoreDisplay.innerText = score; successPercentage = Math.round((correctCount / totalAttempts) * 100);
+                percentageDisplay.innerText = successPercentage; unseenPool.splice(currentTargetIndex, 1); 
+            } else if (currentPhase === 2 && isSuccess) { retryPool.splice(currentTargetIndex, 1); }
             btnTick.style.display = 'none'; btnCross.style.display = 'none'; btnHint.style.display = 'none'; timerDisplay.style.display = 'none';
-            if (unseenPool.length === 0 && retryPool.length === 0) { endGame(); }
-            else { setTimeout(() => { spinMachine(); }, 400); }
+            if (unseenPool.length === 0 && retryPool.length === 0) endGame();
+            else setTimeout(() => { spinMachine(); }, 400); 
         }
         updateLobbyUI();
     </script>
