@@ -24,7 +24,7 @@
         #lobby-view {
             text-align: center;
             width: 100%;
-            max-width: 1100px;
+            max-width: 1200px;
             padding: 40px 20px;
         }
 
@@ -35,106 +35,39 @@
             font-weight: 700;
             margin-top: 0;
             margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(0, 229, 255, 0.6), 0 0 10px rgba(0, 229, 255, 0.4);
+            text-shadow: 0 0 20px rgba(0, 229, 255, 0.6);
             letter-spacing: 6px;
             text-transform: uppercase;
         }
 
-        .lobby-controls {
-            margin-bottom: 40px;
-        }
+        .lobby-controls { margin-bottom: 40px; }
 
         #reset-btn {
-            background: transparent;
-            color: #ff1744;
-            border: 2px solid #ff1744;
-            padding: 10px 20px;
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 20px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            border-radius: 4px;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(255, 23, 68, 0.3), inset 0 0 10px rgba(255, 23, 68, 0.2);
-            transition: all 0.2s;
-            text-transform: uppercase;
+            background: transparent; color: #ff1744; border: 2px solid #ff1744;
+            padding: 10px 20px; font-family: 'Rajdhani', sans-serif; font-size: 20px;
+            font-weight: bold; letter-spacing: 2px; border-radius: 4px; cursor: pointer;
+            transition: all 0.2s; text-transform: uppercase;
         }
 
-        #reset-btn:active {
-            transform: translateY(2px);
-            box-shadow: 0 0 2px rgba(255, 23, 68, 0.5);
-        }
-
-        .machine-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
+        .machine-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
 
         .machine-card {
             background: linear-gradient(180deg, #0d1126 0%, #050612 100%);
-            border: 2px solid #3d5afe;
-            border-radius: 12px;
-            padding: 30px 20px;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 0 15px rgba(61, 90, 254, 0.2);
-            transition: all 0.3s;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 220px;
+            border: 2px solid #3d5afe; border-radius: 12px; padding: 30px 20px;
+            cursor: pointer; transition: all 0.3s; display: flex;
+            flex-direction: column; align-items: center; min-height: 220px;
         }
 
-        .machine-card:hover {
-            transform: translateY(-5px);
-            border-color: #00e5ff;
-            box-shadow: 0 15px 30px rgba(0, 229, 255, 0.3), inset 0 0 20px rgba(0, 229, 255, 0.2);
-        }
+        .machine-card:hover { transform: translateY(-5px); border-color: #00e5ff; box-shadow: 0 0 20px rgba(0, 229, 255, 0.3); }
+        .machine-card h2 { font-family: 'Rajdhani', sans-serif; color: #e0f7fa; font-size: 32px; margin-bottom: 15px; }
 
-        .machine-card h2 {
-            font-family: 'Rajdhani', sans-serif;
-            color: #e0f7fa;
-            margin: 0 0 15px 0;
-            font-size: 32px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .city-icon {
-            width: 70px;
-            height: 70px;
-            margin-bottom: 20px;
-            transition: all 0.3s;
-        }
-
-        .machine-card:hover .city-icon { transform: scale(1.15); }
-
-        #icon-nebula { filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.8)); }
-        #icon-apollo { filter: drop-shadow(0 0 12px rgba(255, 61, 0, 0.8)); }
-        #icon-orion { filter: drop-shadow(0 0 12px rgba(179, 102, 255, 0.8)); }
-        #icon-voyager { filter: drop-shadow(0 0 12px rgba(57, 255, 20, 0.8)); }
-        #icon-cassini { filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8)); }
-        #icon-artemis { filter: drop-shadow(0 0 12px rgba(255, 0, 255, 0.8)); }
+        .city-icon { width: 70px; height: 70px; margin-bottom: 20px; }
 
         .completion-badge {
-            display: none; 
-            background: rgba(0, 0, 0, 0.8);
-            border: 2px solid #39FF14;
-            border-radius: 8px;
-            padding: 10px 15px;
-            width: 80%;
-            text-align: center;
-            margin-top: auto;
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
+            display: none; background: rgba(0, 0, 0, 0.8); border: 2px solid #39FF14;
+            border-radius: 8px; padding: 10px 15px; width: 80%; text-align: center; margin-top: auto;
         }
-
-        .completion-badge.visible {
-            display: block;
-            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .thumbs-up { font-size: 28px; margin-bottom: 5px; display: block; filter: grayscale(100%) brightness(200%) sepia(100%) hue-rotate(90deg) saturate(300%); }
+        .completion-badge.visible { display: block; animation: popIn 0.5s; }
         .final-score { color: #39FF14; font-size: 22px; font-weight: bold; display: block; }
         .final-percent { color: #FFFF00; font-size: 18px; display: block; }
 
@@ -142,11 +75,9 @@
         #game-view { display: none; }
         #machine-casing {
             background: linear-gradient(180deg, #090b17 0%, #03040a 100%);
-            border: 3px solid #3d5afe;
-            border-radius: 16px;
-            padding: 30px;
-            width: 900px;
-            box-shadow: 0 0 40px rgba(61, 90, 254, 0.5), inset 0 0 30px rgba(61, 90, 254, 0.2);
+            border: 3px solid #3d5afe; border-radius: 16px; padding: 30px;
+            width: 1100px; /* ENLARGED WIDTH */
+            box-shadow: 0 0 40px rgba(61, 90, 254, 0.5);
             position: relative;
         }
 
@@ -155,36 +86,39 @@
             position: absolute; left: 0; top: 50%; transform: translateY(-50%);
             background: transparent; border: 2px solid #3d5afe; color: #00e5ff;
             padding: 8px 20px; border-radius: 4px; cursor: pointer;
-            font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: bold; text-transform: uppercase;
+            font-family: 'Rajdhani', sans-serif; font-size: 18px; text-transform: uppercase;
         }
         
-        #game-title { font-family: 'Rajdhani', sans-serif; color: #00e5ff; font-size: 46px; margin: 0; letter-spacing: 4px; text-shadow: 0 0 15px rgba(0, 229, 255, 0.6); }
+        #game-title { font-family: 'Rajdhani', sans-serif; color: #00e5ff; font-size: 46px; letter-spacing: 4px; }
 
+        /* ENLARGED REEL WINDOW */
         #reel-window {
-            background: #010103;
-            border: 2px solid #b366ff;
-            border-radius: 8px;
-            height: 220px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: inset 0 0 40px rgba(179, 102, 255, 0.15);
-            margin-bottom: 25px;
+            background: #010103; border: 2px solid #b366ff; border-radius: 8px;
+            height: 320px; /* INCREASED HEIGHT */
+            position: relative; overflow: hidden; margin-bottom: 25px;
         }
 
         #reel-strip { position: absolute; top: 0; left: 0; width: 100%; display: flex; flex-direction: column; }
-        .sentence-item { height: 220px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 40px; box-sizing: border-box; text-align: center; }
-        .turkish-text { color: #ffffff; font-size: 46px; font-weight: bold; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
-        .english-text { color: #b366ff; font-size: 42px; margin-top: 10px; font-weight: bold; text-shadow: 0 0 15px rgba(179, 102, 255, 0.8); display: none; }
+
+        .sentence-item {
+            height: 320px; /* MATCHING JS itemHeight */
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            padding: 20px 60px; box-sizing: border-box; text-align: center;
+        }
+
+        .turkish-text { color: #ffffff; font-size: 46px; font-weight: bold; line-height: 1.2; margin: 0; }
+        .english-text { color: #b366ff; font-size: 42px; margin-top: 15px; font-weight: bold; display: none; line-height: 1.2; }
 
         #meters { display: flex; justify-content: center; gap: 30px; background: rgba(0, 0, 0, 0.6); border: 1px solid #1a237e; border-radius: 8px; padding: 15px 20px; margin-bottom: 25px; }
-        .meter { text-align: center; color: #e0f7fa; font-size: 32px; letter-spacing: 2px; min-width: 200px; }
-        .meter-title { font-family: 'Rajdhani', sans-serif; font-size: 16px; color: #5c6bc0; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 2px; }
+        .meter { text-align: center; color: #e0f7fa; font-size: 32px; min-width: 220px; }
+        .meter-title { font-family: 'Rajdhani', sans-serif; font-size: 16px; color: #5c6bc0; text-transform: uppercase; }
         .dim-text { color: #5c6bc0; font-size: 24px; }
         
         #percentage-amount, .percent-sign { color: #FFFF00; text-shadow: 0 0 15px rgba(255, 255, 0, 0.8); font-weight: bold; }
 
         #action-panel { display: flex; justify-content: center; gap: 40px; align-items: center; padding: 20px; background: rgba(0,0,0,0.5); border-radius: 12px; margin-bottom: 25px; min-height: 70px; border: 1px solid #1a237e; }
-        .action-btn { background: transparent; border-radius: 6px; font-size: 24px; font-family: 'Oswald', sans-serif; padding: 12px 35px; cursor: pointer; font-weight: bold; display: none; text-transform: uppercase; }
+        .action-btn { background: transparent; border-radius: 6px; font-size: 24px; font-family: 'Oswald', sans-serif; padding: 12px 35px; cursor: pointer; font-weight: bold; display: none; text-transform: uppercase; transition: transform 0.1s; }
+        .action-btn:active { transform: scale(0.95); }
         #btn-tick { color: #39FF14; border: 2px solid #39FF14; }
         #btn-cross { color: #ff1744; border: 2px solid #ff1744; }
         #btn-hint { color: #00e5ff; border: 2px solid #00e5ff; }
@@ -199,11 +133,11 @@
         }
         #spin-btn:disabled { display: none; }
 
-        #finish-btn { display: none; background: rgba(57, 255, 20, 0.1); border: 2px solid #39FF14; border-radius: 8px; color: #39FF14; font-family: 'Rajdhani', sans-serif; font-size: 36px; font-weight: bold; padding: 15px 80px; text-transform: uppercase; letter-spacing: 4px; cursor: pointer; }
+        #finish-btn { display: none; background: rgba(57, 255, 20, 0.1); border: 2px solid #39FF14; border-radius: 8px; color: #39FF14; font-family: 'Rajdhani', sans-serif; font-size: 36px; font-weight: bold; padding: 15px 80px; text-transform: uppercase; cursor: pointer; }
 
         #custom-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
         .modal-content { background: #050612; border: 2px solid #ff1744; border-radius: 12px; padding: 50px; text-align: center; max-width: 550px; box-shadow: 0 0 50px rgba(255, 23, 68, 0.4); }
-        .modal-content p { color: #e0f7fa; font-size: 28px; margin-bottom: 40px; font-family: 'Oswald', sans-serif; }
+        .modal-content p { color: #e0f7fa; font-size: 28px; margin-bottom: 40px; }
         .modal-btn { background: transparent; color: #00e5ff; border: 2px solid #00e5ff; padding: 15px 50px; font-size: 26px; font-family: 'Rajdhani', sans-serif; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
         @keyframes popIn { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
@@ -218,32 +152,32 @@
             <div class="machine-card" onclick="openGame('set1', 'NEBULA STATION')">
                 <h2>NEBULA STATION</h2>
                 <svg id="icon-nebula" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 18C8.69 18 6 15.31 6 12C6 8.69 8.69 6 12 6C15.31 6 18 8.69 18 12"/><circle cx="12" cy="12" r="2" fill="#00e5ff"/></svg>
-                <div id="badge-set1" class="completion-badge"><span class="thumbs-up">👍</span><span class="final-score">Skor: <span id="score-set1">0</span></span><span class="final-percent">Başarı: <span id="percent-set1">0</span>%</span></div>
+                <div id="badge-set1" class="completion-badge"><span class="final-score">Skor: <span id="score-set1">0</span></span><span class="final-percent">Başarı: <span id="percent-set1">0</span>%</span></div>
             </div>
             <div class="machine-card" onclick="openGame('set2', 'APOLLO BASE')">
                 <h2>APOLLO BASE</h2>
                 <svg id="icon-apollo" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#ff3d00" stroke-width="2"><path d="M4.5 16.5C4.5 16.5 3 18.5 2 22C5.5 21 7.5 19.5 7.5 19.5L11 21L14.5 15L21.5 7.5C21.5 7.5 23 2 22 1C21 0 15.5 1.5 15.5 1.5L8 8.5L2 12L3.5 15.5L4.5 16.5Z"/><circle cx="15" cy="8" r="1.5" fill="#ff3d00"/></svg>
-                <div id="badge-set2" class="completion-badge"><span class="thumbs-up">👍</span><span class="final-score">Skor: <span id="score-set2">0</span></span><span class="final-percent">Başarı: <span id="percent-set2">0</span>%</span></div>
+                <div id="badge-set2" class="completion-badge"><span class="final-score">Skor: <span id="score-set2">0</span></span><span class="final-percent">Başarı: <span id="percent-set2">0</span>%</span></div>
             </div>
             <div class="machine-card" onclick="openGame('set3', 'ORION SECTOR')">
                 <h2>ORION SECTOR</h2>
                 <svg id="icon-orion" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#b366ff" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <div id="badge-set3" class="completion-badge"><span class="thumbs-up">👍</span><span class="final-score">Skor: <span id="score-set3">0</span></span><span class="final-percent">Başarı: <span id="percent-set3">0</span>%</span></div>
+                <div id="badge-set3" class="completion-badge"><span class="final-score">Skor: <span id="score-set3">0</span></span><span class="final-percent">Başarı: <span id="percent-set3">0</span>%</span></div>
             </div>
             <div class="machine-card" onclick="openGame('set4', 'VOYAGER OUTPOST')">
                 <h2>VOYAGER OUTPOST</h2>
                 <svg id="icon-voyager" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#39FF14" stroke-width="2"><path d="M12 2C8 2 5 6 5 10C5 12.3 6.2 14.3 8 15.5L12 22L16 15.5C17.8 14.3 19 12.3 19 10C19 6 16 2 12 2Z"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="12" y1="6" x2="12" y2="14"/></svg>
-                <div id="badge-set4" class="completion-badge"><span class="thumbs-up">👍</span><span class="final-score">Skor: <span id="score-set4">0</span></span><span class="final-percent">Başarı: <span id="percent-set4">0</span>%</span></div>
+                <div id="badge-set4" class="completion-badge"><span class="final-score">Skor: <span id="score-set4">0</span></span><span class="final-percent">Başarı: <span id="percent-set4">0</span>%</span></div>
             </div>
             <div class="machine-card" onclick="openGame('set5', 'CASSINI RINGS')">
                 <h2>CASSINI RINGS</h2>
                 <svg id="icon-cassini" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2"><circle cx="12" cy="12" r="6"/><ellipse cx="12" cy="12" rx="10" ry="3" transform="rotate(-20 12 12)"/></svg>
-                <div id="badge-set5" class="completion-badge"><span class="thumbs-up">👍</span><span class="final-score">Skor: <span id="score-set5">0</span></span><span class="final-percent">Başarı: <span id="percent-set5">0</span>%</span></div>
+                <div id="badge-set5" class="completion-badge"><span class="final-score">Skor: <span id="score-set5">0</span></span><span class="final-percent">Başarı: <span id="percent-set5">0</span>%</span></div>
             </div>
             <div class="machine-card" onclick="openGame('set6', 'ARTEMIS LUNAR')">
                 <h2>ARTEMIS LUNAR</h2>
                 <svg id="icon-artemis" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#FF00FF" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
-                <div id="badge-set6" class="completion-badge"><span class="thumbs-up">👍</span><span class="final-score">Skor: <span id="score-set6">0</span></span><span class="final-percent">Başarı: <span id="percent-set6">0</span>%</span></div>
+                <div id="badge-set6" class="completion-badge"><span class="final-score">Skor: <span id="score-set6">0</span></span><span class="final-percent">Başarı: <span id="percent-set6">0</span>%</span></div>
             </div>
         </div>
     </div>
@@ -404,7 +338,7 @@
                 { tr: "Piyasa fiyatlarında bir dalgalanma var.", en: "There is a fluctuation in the market prices." },
                 { tr: "Her şeyi hakime itiraf edecek.", en: "He will confess everything to the judge." },
                 { tr: "Bu kart VIP salonuna girişe izin verir.", en: "This pass permits entry to the VIP lounge." },
-                { tr: "Şu an para iadesi konusunda ısrar ediyor.", en: "She is insisting on a refund right now." },
+                { tr: "Şu an para iadesi konusunda ısrar ediyor.", she: "She is insisting on a refund right now." },
                 { tr: "Rapordaki hataları düzeltmelisin.", en: "You should correct the errors in the report." },
                 { tr: "Tüm ziyaretçiler güvenlik kurallarına uymak zorunda kalacak.", en: "All visitors will have to obey the security rules." },
                 { tr: "Kimse patronu sorgulamaya cesaret edemez.", en: "Nobody dares to question the boss." },
@@ -489,7 +423,7 @@
                 { tr: "Mühendisler şu an yeni bir kuşatma aleti icat ediyor.", en: "The engineers are inventing a new siege tool right now." },
                 { tr: "Donanmanın inşası şu an büyük bir çaba gerektiriyor.", en: "The construction of the navy is requiring a great effort right now." },
                 { tr: "Devlet, komşu krallığın bağımsızlığını tanımalı.", en: "The state should recognize the independence of the neighboring kingdom." },
-                { tr: "Katip, vezire toplantıyı hatırlatmalı.", en: "The secretary should remind the director of the meeting." },
+                { tr: "Katip, vezire toplantıyı hatırlatmalı.", en: "The secretary should remind the vizier of the meeting." },
                 { tr: "Kale surları şehri korumalı.", en: "The fortress walls should protect the city." },
                 { tr: "Yeni kanunlar geleneklerle çelişmemeli.", en: "New laws should not conflict with traditions." },
                 { tr: "Bu topraklar Osmanlı İmparatorluğu'na aittir.", en: "These lands belong to the Ottoman Empire." },
@@ -502,7 +436,9 @@
         let currentSetId = null, unseenPool = [], retryPool = [], currentPhase = 1; 
         let score = 0, maxScore = 0, correctCount = 0, totalAttempts = 0, successPercentage = 0;
         let isSpinning = false, currentTargetIndex = -1, countdownTimer, countdownValue = 10;
-        const itemHeight = 220; 
+        
+        // --- MATCHING THE CSS itemHeight ---
+        const itemHeight = 320; 
 
         const lobbyView = document.getElementById('lobby-view'), gameView = document.getElementById('game-view');
         const reelStrip = document.getElementById('reel-strip'), spinBtn = document.getElementById('spin-btn');
