@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Academy - Sentence Reels</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Oswald:wght@500&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #03020a;
+            background-image: radial-gradient(circle at 50% 50%, #0a0b1a 0%, #03020a 100%);
+            font-family: 'Oswald', sans-serif;
+            margin: 0;
+            color: #e0f7fa;
+            overflow-y: auto;
+        }
+
+        /* --- LOBBY STYLES --- */
+        #lobby-view {
+            text-align: center;
+            width: 100%;
+            max-width: 1100px;
+            padding: 40px 20px;
+        }
+
+        .arcade-title {
+            font-family: 'Rajdhani', sans-serif;
+            color: #00e5ff;
+            font-size: 64px;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(0, 229, 255, 0.6), 0 0 10px rgba(0, 229, 255, 0.4);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+        }
+
+        .lobby-controls {
+            margin-bottom: 40px;
+        }
+
+        #reset-btn {
+            background: transparent;
+            color: #ff1744;
+            border: 2px solid #ff1744;
+            padding: 10px 20px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 23, 68, 0.3), inset 0 0 10px rgba(255, 23, 68, 0.2);
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+
+        #reset-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 0 2px rgba(255, 23, 68, 0.5);
+        }
+
+        .machine-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .machine-card {
+            background: linear-gradient(180deg, #0d1126 0%, #050612 100%);
+            border: 2px solid #3d5afe;
+            border-radius: 12px;
+            padding: 30px 20px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 0 15px rgba(61, 90, 254, 0.2);
+            transition: all 0.3s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 220px;
+        }
+
+        .machine-card:hover {
+            transform: translateY(-5px);
+            border-color: #00e5ff;
+            box-shadow: 0 15px 30px rgba(0, 229, 255, 0.3), inset 0 0 20px rgba(0, 229, 255, 0.2);
+        }
+
+        .machine-card h2 {
+            font-family: 'Rajdhani', sans-serif;
+            color: #e0f7fa;
+            margin: 0 0 15px 0;
+            font-size: 32px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .city-icon {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .machine-card:hover .city-icon {
+            transform: scale(1.15);
+        }
+
+        /* Sci-Fi Glows for icons */
+        #icon-nebula { filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.8)); }
+        #icon-apollo { filter: drop-shadow(0 0 12px rgba(255, 61, 0, 0.8)); }
+        #icon-orion { filter: drop-shadow(0 0 12px rgba(179, 102, 255, 0.8)); }
+        #icon-voyager { filter: drop-shadow(0 0 12px rgba(57, 255, 20, 0.8)); }
+        #icon-cassini { filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8)); }
+        #icon-artemis { filter: drop-shadow(0 0 12px rgba(255, 0, 255, 0.8)); }
+
+        .completion-badge {
+            display: none; 
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #39FF14;
+            border-radius: 8px;
+            padding: 10px 15px;
+            width: 80%;
+            text-align: center;
+            margin-top: auto;
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
+        }
+
+        .completion-badge.visible {
+            display: block;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .thumbs-up {
+            font-size: 28px;
+            margin-bottom: 5px;
+            display: block;
+            filter: grayscale(100%) brightness(200%) sepia(100%) hue-rotate(90deg) saturate(300%); /* Make emoji greenish */
+        }
+
+        .final-score {
+            color: #39FF14;
+            font-size: 22px;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .final-percent {
+            color: #FFFF00;
+            font-size: 18px;
+            display: block;
+        }
+
+        /* --- GAME STYLES --- */
+        #game-view { display: none; }
+
+        #machine-casing {
+            background: linear-gradient(180deg, #090b17 0%, #03040a 100%);
+            border: 3px solid #3d5afe;
+            border-radius: 16px;
+            padding: 30px;
+            width: 900px;
+            box-shadow: 0 0 40px rgba(61, 90, 254, 0.5), inset 0 0 30px rgba(61, 90, 254, 0.2);
+            position: relative;
+        }
+
+        #header {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        #back-btn {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: 2px solid #3d5afe;
+            color: #00e5ff;
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+        
+        #back-btn:hover { 
+            background: rgba(61, 90, 254, 0.2); 
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+        }
+        
+        #game-title {
+            font-family: 'Rajdhani', sans-serif;
+            color: #00e5ff;
+            font-size: 46px;
+            margin: 0;
+            letter-spacing: 4px;
+            text-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+        }
+
+        #reel-window {
+            background: #010103;
+            border: 2px solid #b366ff;
+            border-radius: 8px;
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 40px rgba(179, 102, 255, 0.15);
+            margin-bottom: 25px;
+        }
+
+        #reel-strip {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sentence-item {
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 40px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .turkish-text {
+            color: #ffffff;
+            font-size: 46px; 
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .english-text {
+            color: #b366ff; /* Sci-fi purple for English text */
+            font-size: 42px; 
+            margin-top: 10px;
+            font-weight: bold; 
+            text-shadow: 0 0 15px rgba(179, 102, 255, 0.8), 0 0 5px rgba(179, 102, 255, 0.5); 
+            display: none; 
+        }
+
+        #meters {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid #1a237e;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+        }
+
+        .meter {
+            text-align: center;
+            color: #e0f7fa;
+            font-size: 32px;
+            letter-spacing: 2px;
+            min-width: 200px;
+        }
+        
+        .meter-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 16px;
+            color: #5c6bc0;
+            display: block;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .dim-text { color: #5c6bc0; font-size: 24px; }
+        
+        /* Bright yellow for success percentage */
+        #percentage-amount, .percent-sign {
+            color: #FFFF00;
+            text-shadow: 0 0 15px rgba(255, 255, 0, 0.8);
+            font-weight: bold;
+        }
+        .percent-sign { font-size: 26px; }
+
+        #action-panel {
+            display: flex;
+            justify-content: center; 
+            gap: 40px; 
+            align-items: center;
+            padding: 20px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 12px;
+            margin-bottom: 25px;
+            min-height: 70px;
+            border: 1px solid #1a237e;
+        }
+
+        .action-btn {
+            background: transparent;
+            border-radius: 6px;
+            font-size: 24px;
+            font-family: 'Oswald', sans-serif;
+            padding: 12px 35px;
+            cursor: pointer;
+            font-weight: bold;
+            display: none; 
+            transition: all 0.1s;
+            text-transform: uppercase;
+        }
+
+        .action-btn:active { transform: scale(0.95); }
+
+        #btn-tick { 
+            color: #39FF14; 
+            border: 2px solid #39FF14; 
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3), inset 0 0 10px rgba(57, 255, 20, 0.2); 
+        }
+        #btn-cross { 
+            color: #ff1744; 
+            border: 2px solid #ff1744; 
+            box-shadow: 0 0 15px rgba(255, 23, 68, 0.3), inset 0 0 10px rgba(255, 23, 68, 0.2); 
+        }
+        #btn-hint { 
+            color: #00e5ff; 
+            border: 2px solid #00e5ff; 
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.3), inset 0 0 10px rgba(0, 229, 255, 0.2); 
+        }
+
+        .action-btn:disabled {
+            border-color: #333 !important;
+            color: #555 !important;
+            box-shadow: none !important;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        #controls { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            position: relative; 
+            min-height: 90px;
+        }
+
+        /* Bottom Left Neon Green Timer */
+        #timer-display {
+            color: #39FF14;
+            font-size: 54px;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(57, 255, 20, 0.9);
+            display: none;
+            position: absolute;
+            left: 20px; 
+            font-family: 'Oswald', sans-serif;
+        }
+
+        #spin-btn {
+            background: rgba(0, 229, 255, 0.1);
+            border: 2px solid #00e5ff;
+            border-radius: 8px;
+            color: #00e5ff;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 46px;
+            font-weight: bold;
+            padding: 15px 120px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.4), inset 0 0 20px rgba(0, 229, 255, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            transition: all 0.1s;
+        }
+
+        #spin-btn:active { 
+            transform: scale(0.98); 
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.6), inset 0 0 10px rgba(0, 229, 255, 0.4); 
+            background: rgba(0, 229, 255, 0.3);
+        }
+        #spin-btn:disabled { 
+            border-color: #333; 
+            color: #555; 
+            background: transparent;
+            box-shadow: none; 
+            cursor: not-allowed; 
+            transform: none; 
+        }
+
+        #finish-btn {
+            display: none; 
+            background: rgba(57, 255, 20, 0.1);
+            border: 2px solid #39FF14;
+            border-radius: 8px;
+            color: #39FF14;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 36px;
+            font-weight: bold;
+            padding: 15px 80px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.4), inset 0 0 20px rgba(57, 255, 20, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        /* --- CUSTOM MODAL ALERT --- */
+        #custom-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: #050612;
+            border: 2px solid #ff1744;
+            border-radius: 12px;
+            padding: 50px;
+            text-align: center;
+            max-width: 550px;
+            box-shadow: 0 0 50px rgba(255, 23, 68, 0.4), inset 0 0 20px rgba(255, 23, 68, 0.2);
+        }
+
+        .modal-content p {
+            color: #e0f7fa;
+            font-size: 28px;
+            margin-top: 0;
+            margin-bottom: 40px;
+            line-height: 1.5;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .modal-btn {
+            background: transparent;
+            color: #00e5ff;
+            border: 2px solid #00e5ff;
+            padding: 15px 50px;
+            font-size: 26px;
+            font-family: 'Rajdhani', sans-serif;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.4), inset 0 0 10px rgba(0, 229, 255, 0.2);
+            font-weight: bold;
+            letter-spacing: 2px;
+            transition: all 0.1s;
+        }
+
+        .modal-btn:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="lobby-view">
+        <h1 class="arcade-title">SPACE ACADEMY</h1>
+        <div class="lobby-controls">
+            <button id="reset-btn" onclick="resetAllProgress()">Skorları Sıfırla</button>
+        </div>
+
+        <div class="machine-grid">
+            
+            <div class="machine-card" onclick="openGame('set1', 'NEBULA STATION')">
+                <h2>NEBULA STATION</h2>
+                <svg id="icon-nebula" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 18C8.69 18 6 15.31 6 12C6 8.69 8.69 6 12 6C15.31 6 18 8.69 18 12"/>
+                    <circle cx="12" cy="12" r="2" fill="#00e5ff"/>
+                </svg>
+                <div id="badge-set1" class="completion-badge">
+                    <span class="thumbs-up">👍</span>
+                    <span class="final-score">Skor: <span id="score-set1">0</span></span>
+                    <span class="final-percent">Başarı: <span id="percent-set1">0</span>%</span>
+                </div>
+            </div>
+            
+            <div class="machine-card" onclick="openGame('set2', 'APOLLO BASE')">
+                <h2>APOLLO BASE</h2>
+                <svg id="icon-apollo" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#ff3d00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4.5 16.5C4.5 16.5 3 18.5 2 22C5.5 21 7.5 19.5 7.5 19.5L11 21L14.5 15L21.5 7.5C21.5 7.5 23 2 22 1C21 0 15.5 1.5 15.5 1.5L8 8.5L2 12L3.5 15.5L4.5 16.5Z"/>
+                    <circle cx="15" cy="8" r="1.5" fill="#ff3d00"/>
+                </svg>
+                <div id="badge-set2" class="completion-badge">
+                    <span class="thumbs-up">👍</span>
+                    <span class="final-score">Skor: <span id="score-set2">0</span></span>
+                    <span class="final-percent">Başarı: <span id="percent-set2">0</span>%</span>
+                </div>
+            </div>
+
+            <div class="machine-card" onclick="openGame('set3', 'ORION SECTOR')">
+                <h2>ORION SECTOR</h2>
+                <svg id="icon-orion" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#b366ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+                <div id="badge-set3" class="completion-badge">
+                    <span class="thumbs-up">👍</span>
+                    <span class="final-score">Skor: <span id="score-set3">0</span></span>
+                    <span class="final-percent">Başarı: <span id="percent-set3">0</span>%</span>
+                </div>
+            </div>
+
+            <div class="machine-card" onclick="openGame('set4', 'VOYAGER OUTPOST')">
+                <h2>VOYAGER OUTPOST</h2>
+                <svg id="icon-voyager" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#39FF14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2C8 2 5 6 5 10C5 12.3 6.2 14.3 8 15.5L12 22L16 15.5C17.8 14.3 19 12.3 19 10C19 6 16 2 12 2Z"/>
+                    <line x1="8" y1="10" x2="16" y2="10"/>
+                    <line x1="12" y1="6" x2="12" y2="14"/>
+                </svg>
+                <div id="badge-set4" class="completion-badge">
+                    <span class="thumbs-up">👍</span>
+                    <span class="final-score">Skor: <span id="score-set4">0</span></span>
+                    <span class="final-percent">Başarı: <span id="percent-set4">0</span>%</span>
+                </div>
+            </div>
+
+            <div class="machine-card" onclick="openGame('set5', 'CASSINI RINGS')">
+                <h2>CASSINI RINGS</h2>
+                <svg id="icon-cassini" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="6"/>
+                    <ellipse cx="12" cy="12" rx="10" ry="3" transform="rotate(-20 12 12)"/>
+                </svg>
+                <div id="badge-set5" class="completion-badge">
+                    <span class="thumbs-up">👍</span>
+                    <span class="final-score">Skor: <span id="score-set5">0</span></span>
+                    <span class="final-percent">Başarı: <span id="percent-set5">0</span>%</span>
+                </div>
+            </div>
+
+            <div class="machine-card" onclick="openGame('set6', 'ARTEMIS LUNAR')">
+                <h2>ARTEMIS LUNAR</h2>
+                <svg id="icon-artemis" class="city-icon" viewBox="0 0 24 24" fill="none" stroke="#FF00FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
+                </svg>
+                <div id="badge-set6" class="completion-badge">
+                    <span class="thumbs-up">👍</span>
+                    <span class="final-score">Skor: <span id="score-set6">0</span></span>
+                    <span class="final-percent">Başarı: <span id="percent-set6">0</span>%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-view">
+        <div id="machine-casing">
+            <div id="header">
+                <button id="back-btn" onclick="returnToLobby()">◀ Lobby</button>
+                <h1 id="game-title">COSMIC REELS</h1>
+            </div>
+            
+            <div id="reel-window">
+                <div id="reel-strip">
+                    </div>
+            </div>
+
+            <div id="meters">
+                <div class="meter">
+                    <span class="meter-title">SCORE</span>
+                    <span id="score-amount">0</span> <span class="dim-text">/ <span id="score-max">0</span></span>
+                </div>
+                <div class="meter">
+                    <span class="meter-title">SUCCESS</span>
+                    <span id="percentage-amount">0</span><span class="percent-sign">%</span>
+                </div>
+            </div>
+
+            <div id="action-panel">
+                <button id="btn-tick" class="action-btn" onclick="handleAnswer(true)">✅ I got it</button>
+                <button id="btn-hint" class="action-btn" onclick="showHint()">Check the Answer</button>
+                <button id="btn-cross" class="action-btn" onclick="handleAnswer(false)">❌ I failed</button>
+            </div>
+
+            <div id="controls">
+                <div id="timer-display">10</div>
+                <button id="spin-btn" onclick="spinMachine()">SPIN</button>
+                <button id="finish-btn" onclick="returnToLobby()">KAYDET VE ÇIK</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="custom-modal">
+        <div class="modal-content">
+            <p>Sistem Taraması Tamamlandı!<br><br>Şimdi sadece yanlış bildiklerini tekrar edeceğiz. Puan yok, sadece odaklan!</p>
+            <button class="modal-btn" onclick="startRedemptionRound()">ONAYLA</button>
+        </div>
+    </div>
+
+    <script>
+        const allSentenceData = {
+            "set1": [
+                { tr: "Düşman eski köprüyü yıkmıştı.", en: "The enemy had destroyed the old bridge." },
+                { tr: "Polis hırsızı yakaladı.", en: "The police captured the thief." },
+                { tr: "Öğretmen öğrencilerine ilham verirdi.", en: "The teacher used to inspire his students." },
+                { tr: "Çocuklar karanlıktan korkardı.", en: "Children used to fear the dark." },
+                { tr: "Patron iyi işi övmeli.", en: "The boss should praise the good work." },
+                { tr: "Kapı kapalı kalmıştı.", en: "The door had remained closed." },
+                { tr: "Onun cesaretine hayran olurdum.", en: "I used to admire his courage." },
+                { tr: "İş teklifini reddetmeli.", en: "He should refuse the job offer." },
+                { tr: "Yüksek ses beni korkutuyordu.", en: "The loud noise was scaring me." },
+                { tr: "Askerler saldırıya direnmek zorundaydı.", en: "The soldiers had to resist the attack." },
+                { tr: "Takımımız rakiplerini yenmişti.", en: "Our team had defeated their opponents." },
+                { tr: "Lider insanları birleştirirdi.", en: "The leader used to unite the people." },
+                { tr: "Ordu ülkeyi savunmalı.", en: "The army should defend the country." },
+                { tr: "Yüksek duvarlar bahçeyi çevreliyordu.", en: "High walls were surrounding the garden." },
+                { tr: "Beni bunu yapmaya zorlamak zorundaydılar.", en: "They had to force me to do this." },
+                { tr: "Askerler sonunda teslim olmuştu.", en: "The soldiers had finally surrendered." },
+                { tr: "Doktorlar onu hastaneden taburcu etmeli.", en: "The doctors should release him from the hospital." },
+                { tr: "Altın fiyatlarında bir dalgalanma vardı.", en: "There was a fluctuation in gold prices." },
+                { tr: "Polise suçunu itiraf etmek zorundaydı.", en: "He had to confess his crime to the police." },
+                { tr: "Burada park etmeye izin vermiyorlardı.", en: "They were not permitting parking here." },
+                { tr: "Hesapları ödemek konusunda ısrar etmişti.", en: "He had insisted on paying the bills." },
+                { tr: "Öğretmen testteki hataları düzeltmeli.", en: "The teacher should correct the mistakes on the test." },
+                { tr: "Trafik kurallarına uymak zorundaydın.", en: "You had to obey the traffic rules." },
+                { tr: "Oraya yalnız gitmeye cesaret ederdi.", en: "He used to dare to go there alone." },
+                { tr: "Tabeladaki uyarıları görmezden geliyordu.", en: "He was ignoring the warnings on the sign." },
+                { tr: "Güvenlik görevlisi kavgaya müdahale etmişti.", en: "The security guard had intervened the fight." },
+                { tr: "Edison ampulü icat etmişti.", en: "Edison had invented the lightbulb." },
+                { tr: "Bu iş çok fazla sabır gerektirirdi.", en: "This job used to require a lot of patience." },
+                { tr: "Onu eski bir fotoğraftan tanımak zorundaydım.", en: "I had to recognize him from an old photo." },
+                { tr: "Sekreter bana toplantıyı hatırlatmalı.", en: "The secretary should remind me of the meeting." },
+                { tr: "Güneş gözlüğü gözlerinizi koruyordu.", en: "Sunglasses were protecting your eyes." },
+                { tr: "İki rapor birbiriyle çatışıyordu.", en: "The two reports were conflicting with each other." },
+                { tr: "Bu kırmızı araba bana aitti.", en: "This red car belonged to me." },
+                { tr: "Faturadaki hatayı fark etmiştim.", en: "I had noticed the mistake on the invoice." },
+                { tr: "Bizi kötü hava koşullarına karşı uyarmak zorundaydı.", en: "He had to warn us about the bad weather." },
+                { tr: "Bir dakika çantamı tutmalısın.", en: "You should hold my bag for a minute." }
+            ],
+            "set2": [ { tr: "Örnek Cümle 1", en: "Example Sentence 1" } ],
+            "set3": [ { tr: "Örnek Cümle 1", en: "Example Sentence 1" } ],
+            "set4": [ { tr: "Örnek Cümle 1", en: "Example Sentence 1" } ],
+            "set5": [ { tr: "Örnek Cümle 1", en: "Example Sentence 1" } ],
+            "set6": [ { tr: "Örnek Cümle 1", en: "Example Sentence 1" } ]
+        };
+
+        let currentSetId = null;
+        let unseenPool = [];
+        let retryPool = [];
+        let currentPhase = 1; 
+        
+        let score = 0;
+        let maxScore = 0;
+        let correctCount = 0;
+        let totalAttempts = 0;
+        let successPercentage = 0;
+
+        let isSpinning = false;
+        let currentTargetIndex = -1;
+        let countdownTimer;
+        let countdownValue = 10;
+        const itemHeight = 220; 
+
+        const lobbyView = document.getElementById('lobby-view');
+        const gameView = document.getElementById('game-view');
+        const reelStrip = document.getElementById('reel-strip');
+        const spinBtn = document.getElementById('spin-btn');
+        const finishBtn = document.getElementById('finish-btn');
+        const btnTick = document.getElementById('btn-tick');
+        const btnCross = document.getElementById('btn-cross');
+        const btnHint = document.getElementById('btn-hint');
+        const timerDisplay = document.getElementById('timer-display');
+        const scoreDisplay = document.getElementById('score-amount');
+        const scoreMaxDisplay = document.getElementById('score-max');
+        const percentageDisplay = document.getElementById('percentage-amount');
+        const gameTitleDisplay = document.getElementById('game-title');
+        const customModal = document.getElementById('custom-modal');
+
+        // Note: Unique local storage key for the Space theme so it doesn't conflict with Casino
+        const STORAGE_KEY = 'spaceArcadeProgress';
+
+        function updateLobbyUI() {
+            const progress = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+            
+            for (let i = 1; i <= 6; i++) {
+                const setId = 'set' + i;
+                const badge = document.getElementById('badge-' + setId);
+                
+                if (progress[setId] !== undefined) {
+                    badge.classList.add('visible');
+                    document.getElementById('score-' + setId).innerText = progress[setId].score;
+                    document.getElementById('percent-' + setId).innerText = progress[setId].percent;
+                } else {
+                    badge.classList.remove('visible');
+                }
+            }
+        }
+
+        function resetAllProgress() {
+            if(confirm("Tüm uzay üssü skorlarını silmek istediğine emin misin?")) {
+                localStorage.removeItem(STORAGE_KEY);
+                updateLobbyUI();
+            }
+        }
+
+        function openGame(setId, cityName) {
+            currentSetId = setId;
+            unseenPool = JSON.parse(JSON.stringify(allSentenceData[setId]));
+            retryPool = [];
+            currentPhase = 1;
+
+            score = 0;
+            correctCount = 0;
+            totalAttempts = 0;
+            successPercentage = 0;
+            maxScore = unseenPool.length * 100;
+            
+            scoreDisplay.innerText = score;
+            scoreMaxDisplay.innerText = maxScore;
+            percentageDisplay.innerText = "0";
+            gameTitleDisplay.innerText = cityName + " REELS";
+            
+            lobbyView.style.display = 'none';
+            gameView.style.display = 'block';
+
+            spinBtn.style.display = 'block';
+            spinBtn.disabled = false;
+            finishBtn.style.display = 'none';
+            
+            btnTick.style.display = 'none';
+            btnCross.style.display = 'none';
+            btnHint.style.display = 'none';
+            timerDisplay.style.display = 'none';
+            customModal.style.display = 'none';
+
+            reelStrip.innerHTML = `<div class="sentence-item"><span class="turkish-text">SPIN'e basarak başla!</span></div>`;
+            reelStrip.style.transform = `translateY(0px)`;
+        }
+
+        function returnToLobby() {
+            clearInterval(countdownTimer);
+            gameView.style.display = 'none';
+            lobbyView.style.display = 'block';
+            updateLobbyUI();
+        }
+
+        function saveCompletion() {
+            let progress = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+            progress[currentSetId] = { score: score, percent: successPercentage }; 
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+        }
+
+        function endGame() {
+            reelStrip.innerHTML = `<div class="sentence-item"><span class="turkish-text" style="color:#39FF14;">SİSTEM BAŞARILI!<br>Bölüm Bitti!</span></div>`;
+            spinBtn.style.display = 'none';
+            finishBtn.style.display = 'block';
+            saveCompletion(); 
+        }
+
+        function startRedemptionRound() {
+            customModal.style.display = 'none';
+            isSpinning = false;
+            spinBtn.disabled = false;
+            spinMachine(); 
+        }
+
+        function spinMachine() {
+            if (isSpinning) return;
+
+            if (unseenPool.length === 0 && currentPhase === 1) {
+                if (retryPool.length === 0) {
+                    endGame();
+                    return;
+                } else {
+                    currentPhase = 2; 
+                    customModal.style.display = 'flex'; 
+                    return; 
+                }
+            }
+
+            if (unseenPool.length === 0 && retryPool.length === 0) {
+                endGame();
+                return;
+            }
+            
+            isSpinning = true;
+            spinBtn.disabled = true;
+            
+            btnTick.style.display = 'none';
+            btnCross.style.display = 'none';
+            btnHint.style.display = 'none';
+            timerDisplay.style.display = 'none';
+
+            let activePool = currentPhase === 1 ? unseenPool : retryPool;
+            currentTargetIndex = Math.floor(Math.random() * activePool.length);
+            const targetData = activePool[currentTargetIndex];
+
+            const totalItemsInSpin = 20; 
+            reelStrip.innerHTML = '';
+            reelStrip.style.transition = 'none';
+            reelStrip.style.transform = `translateY(0px)`;
+
+            for (let i = 0; i < totalItemsInSpin; i++) {
+                const div = document.createElement('div');
+                div.className = 'sentence-item';
+                
+                if (i === totalItemsInSpin - 1) {
+                    div.innerHTML = `
+                        <span class="turkish-text">${targetData.tr}</span>
+                        <span class="english-text" id="active-english">${targetData.en}</span>
+                    `;
+                } else {
+                    const randomPhrase = activePool[Math.floor(Math.random() * activePool.length)].tr;
+                    div.innerHTML = `<span class="turkish-text">${randomPhrase}</span>`;
+                }
+                reelStrip.appendChild(div);
+            }
+
+            void reelStrip.offsetWidth; 
+
+            const targetY = -((totalItemsInSpin - 1) * itemHeight);
+
+            reelStrip.style.transition = 'transform 2.0s cubic-bezier(0.1, 0.1, 0.1, 1), filter 2.0s ease-out';
+            reelStrip.style.filter = 'blur(3px)';
+            reelStrip.style.transform = `translateY(${targetY}px)`;
+
+            setTimeout(() => { reelStrip.style.filter = 'blur(0px)'; }, 1500);
+
+            setTimeout(() => {
+                isSpinning = false;
+                startActionPhase();
+            }, 2000); 
+        }
+
+        function startActionPhase() {
+            btnTick.style.display = 'block';
+            btnCross.style.display = 'block';
+            timerDisplay.style.display = 'block';
+            btnHint.style.display = 'block';
+            
+            btnTick.disabled = true;
+            btnCross.disabled = true;
+            
+            // The "Check the Answer" button is instantly clickable
+            btnHint.disabled = false; 
+
+            countdownValue = 10;
+            timerDisplay.innerText = countdownValue;
+
+            countdownTimer = setInterval(() => {
+                countdownValue--;
+                timerDisplay.innerText = countdownValue;
+                
+                if (countdownValue <= 0) {
+                    clearInterval(countdownTimer);
+                }
+            }, 1000);
+        }
+
+        function showHint() {
+            clearInterval(countdownTimer); // Instantly stops the timer when clicked
+            document.getElementById('active-english').style.display = 'block';
+            btnHint.disabled = true; 
+            btnTick.disabled = false;
+            btnCross.disabled = false;
+        }
+
+        function handleAnswer(isSuccess) {
+            clearInterval(countdownTimer);
+            let activePool = currentPhase === 1 ? unseenPool : retryPool;
+            const answeredItem = activePool[currentTargetIndex];
+
+            if (currentPhase === 1) {
+                totalAttempts++;
+                if (isSuccess) {
+                    score += 100;
+                    correctCount++;
+                } else {
+                    retryPool.push(answeredItem); 
+                }
+                
+                scoreDisplay.innerText = score;
+                successPercentage = Math.round((correctCount / totalAttempts) * 100);
+                percentageDisplay.innerText = successPercentage;
+                
+                unseenPool.splice(currentTargetIndex, 1); 
+                
+            } else if (currentPhase === 2) {
+                if (isSuccess) {
+                    retryPool.splice(currentTargetIndex, 1);
+                }
+            }
+
+            btnTick.style.display = 'none';
+            btnCross.style.display = 'none';
+            btnHint.style.display = 'none';
+            timerDisplay.style.display = 'none';
+            
+            if (unseenPool.length === 0 && retryPool.length === 0) {
+                endGame();
+            } else {
+                spinBtn.disabled = false;
+            }
+        }
+
+        updateLobbyUI();
+    </script>
+</body>
+</html>
